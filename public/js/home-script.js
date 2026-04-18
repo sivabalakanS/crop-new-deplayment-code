@@ -3,14 +3,18 @@ checkAuth();
 
 async function checkAuth() {
     try {
-        const response = await fetch((typeof API_BASE !== 'undefined' ? API_BASE : '') + '/api/auth/me', { credentials: 'include' });
+        const response = await fetch((typeof API_BASE !== 'undefined' ? API_BASE : '') + '/api/auth/me', { 
+            credentials: 'include',
+            cache: 'no-store'
+        });
         if (!response.ok) {
             window.location.replace('/');
             return;
         }
         const data = await response.json();
         if (data.success && data.user) {
-            document.getElementById('username').textContent = data.user.username;
+            const nameEl = document.getElementById('username');
+            if (nameEl) nameEl.textContent = data.user.username || 'Farmer';
         }
     } catch (error) {
         window.location.replace('/');
