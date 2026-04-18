@@ -21,10 +21,13 @@ app.use(express.urlencoded({ extended: true, limit: '20mb' }));
 app.use(cookieParser());
 app.use(cors({
     origin: process.env.NODE_ENV === 'production'
-        ? [process.env.FRONTEND_URL || 'https://crop-new-deplayment-code.onrender.com']
-        : ['http://localhost:3001'],
+        ? 'https://crop-new-deplayment-code-1.onrender.com'
+        : 'http://localhost:3001',
     credentials: true
 }));
+
+// Trust proxy for Render
+app.set('trust proxy', 1);
 
 // Serve static files
 app.use(express.static('public', {
