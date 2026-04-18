@@ -154,7 +154,7 @@ function setPhotoPreview(src) {
     cardPhoto.innerHTML = `<img src="${src}" alt="photo">`;
 }
 
-
+function formatAadhar() {
     const el = document.getElementById('fcAadhar');
     let v = el.value.replace(/\D/g, '').slice(0, 12);
     el.value = v.replace(/(\d{4})(?=\d)/g, '$1 ');
