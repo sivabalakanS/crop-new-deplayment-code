@@ -1,0 +1,76 @@
+{
+  "Ariyalur": {
+    "Ariyalur": ["Ariyalur", "Thirumanur", "Sendurai", "Udayarpalayam"],
+    "Andimadam": ["Andimadam", "Melarasur", "Keelakurichi", "Varadarajanpet"],
+    "Sendurai": ["Sendurai", "Thirumanur", "Varadarajanpet", "Edayakurichi"]
+  },
+  "Chengalpattu": {
+    "Chengalpattu": ["Chengalpattu", "Madurantakam", "Lathur", "Thiruporur"],
+    "Tambaram": ["Tambaram", "Pallavaram", "Chromepet", "Anakaputhur"],
+    "Madurantakam": ["Madurantakam", "Lathur", "Acharapakkam", "Uthiramerur"],
+    "Thiruporur": ["Thiruporur", "Kelambakkam", "Nemmeli", "Uthandi"]
+  },
+  "Chennai": {
+    "Egmore-Nungambakkam": ["Egmore", "Nungambakkam", "Chetpet", "Kilpauk"],
+    "Mambalam-Guindy": ["Mambalam", "Guindy", "Saidapet", "Ashok Nagar"],
+    "Mylapore-Triplicane": ["Mylapore", "Triplicane", "Chepauk", "Royapettah"],
+    "Tondiarpet": ["Tondiarpet", "Royapuram", "Washermanpet", "Perambur"],
+    "Fort-Tondiarpet": ["Fort", "George Town", "Parrys", "Sowcarpet"]
+  },
+  "Coimbatore": {
+    "Coimbatore North": ["Ganapathy", "Thudiyalur", "Karamadai", "Mettupalayam"],
+    "Coimbatore South": ["Pollachi", "Kinathukadavu", "Anaimalai", "Valparai"],
+    "Sulur": ["Sulur", "Kaniyur", "Narasimhanaickenpalayam", "Chinniyampalayam"],
+    "Pollachi": ["Pollachi", "Udumalpet", "Valparai", "Anaimalai"],
+    "Mettupalayam": ["Mettupalayam", "Sirumugai", "Coonoor", "Kotagiri"]
+  },
+  "Cuddalore": {
+    "Cuddalore": ["Cuddalore", "Panruti", "Kurinjipadi", "Kattumannarkoil"],
+    "Chidambaram": ["Chidambaram", "Kattumannarkoil", "Tittakudi", "Vriddhachalam"],
+    "Virudhachalam": ["Virudhachalam", "Tittakudi", "Nellikkuppam", "Parangipettai"]
+  },
+  "Dharmapuri": {
+    "Dharmapuri": ["Dharmapuri", "Harur", "Palacode", "Pennagaram"],
+    "Harur": ["Harur", "Morappur", "Karimangalam", "Pappiредди"],
+    "Palacode": ["Palacode", "Pennagaram", "Karimangalam", "Nallampalli"]
+  },
+  "Dindigul": {
+    "Dindigul": ["Dindigul", "Palani", "Oddanchatram", "Vedasandur"],
+    "Natham": ["Natham", "Nilakottai", "Athoor", "Vadamadurai"],
+    "Kodaikanal": ["Kodaikanal", "Batlagundu", "Thoppampatti", "Shanarpatti"],
+    "Palani": ["Palani", "Oddanchatram", "Vedasandur", "Nilakottai"]
+  },
+  "Erode": {
+    "Erode": ["Erode City", "Modakurichi", "Perundurai", "Vijayamangalam"],
+    "Gobichettipalayam": ["Gobichettipalayam", "Sathyamangalam", "Anthiyur", "Bhavani"],
+    "Dharapuram": ["Dharapuram", "Kangeyam", "Kodumudi", "Punjai Puliampatti"],
+    "Bhavani": ["Bhavani", "Anthiyur", "Bargur", "Thalavadi"],
+    "Perundurai": ["Perundurai", "Vijayamangalam", "Modakurichi", "Chennimalai"]
+  },
+  "Kallakurichi": {
+    "Kallakurichi": ["Kallakurichi", "Chinnaselam", "Ulundurpet", "Sankarapuram"],
+    "Ulundurpet": ["Ulundurpet", "Rishivandiyam", "Tirukoilur", "Tirunavalur"],
+    "Sankarapuram": ["Sankarapuram", "Chinnasalem", "Tirukoilur", "Kalvarayan Hills"]
+  },
+  "Kancheepuram": {
+    "Kancheepuram": ["Kancheepuram", "Uthiramerur", "Sriperumbudur", "Kundrathur"],
+    "Sriperumbudur": ["Sriperumbudur", "Walajabad", "Kundrathur", "Thiruporur"],
+    "Uthiramerur": ["Uthiramerur", "Acharapakkam", "Lathur", "Madurantakam"]
+  },
+  "Kanyakumari": {
+    "Nagercoil": ["Nagercoil", "Thuckalay", "Thiruvattar", "Kuzhithurai"],
+    "Padmanabhapuram": ["Padmanabhapuram", "Thovalai", "Colachel", "Killiyoor"],
+    "Vilavancode": ["Vilavancode", "Marthandam", "Kalkulam", "Agastheeswaram"],
+    "Thovalai": ["Thovalai", "Bhoothapandy", "Karungal", "Rajakkamangalam"]
+  },
+  "Karur": {
+    "Karur": ["Karur City", "Kulithalai", "Aravakurichi", "Pugalur"],
+    "Krishnarayapuram": ["Krishnarayapuram", "Kadavur", "Manmangalam", "Thanthoni"],
+    "Kulithalai": ["Kulithalai", "Aravakurichi", "Pugalur", "Kadavur"]
+  },
+  "Krishnagiri": {
+    "Krishnagiri": ["Krishnagiri", "Hosur", "Pochampalli", "Denkanikottai"],
+    "Hosur": ["Hosur", "Thally", "Kelamangalam", "Shoolagiri"],
+    "Uthangarai": ["Uthangarai", "Bargur", "Kaveripattinam", "Anchetti"]
+  }
+}

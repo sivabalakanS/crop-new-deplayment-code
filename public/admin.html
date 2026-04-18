@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - SmartAgri</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f4f8; min-height: 100vh; }
+        .header { background: linear-gradient(135deg, #2c3e50, #34495e); color: white; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; }
+        .header h1 { font-size: 22px; }
+        .header span { font-size: 13px; opacity: 0.7; }
+        .container { max-width: 1100px; margin: 30px auto; padding: 0 20px; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .stat-card { background: white; border-radius: 12px; padding: 24px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-top: 4px solid #2ecc71; }
+        .stat-card.blue { border-top-color: #3498db; }
+        .stat-card.orange { border-top-color: #f39c12; }
+        .stat-card.red { border-top-color: #e74c3c; }
+        .stat-icon { font-size: 36px; margin-bottom: 10px; }
+        .stat-label { font-size: 13px; color: #7f8c8d; margin-bottom: 6px; }
+        .stat-value { font-size: 32px; font-weight: 700; color: #2c3e50; }
+        .section { background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); overflow: hidden; margin-bottom: 24px; }
+        .section-header { padding: 18px 24px; background: #f8f9fa; border-bottom: 1px solid #ecf0f1; display: flex; justify-content: space-between; align-items: center; }
+        .section-header h2 { font-size: 16px; color: #2c3e50; }
+        .refresh-btn { padding: 7px 16px; background: #3498db; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 13px; }
+        .refresh-btn:hover { background: #2980b9; }
+        table { width: 100%; border-collapse: collapse; }
+        th { padding: 12px 18px; text-align: left; font-size: 12px; font-weight: 700; color: #7f8c8d; text-transform: uppercase; background: #f8f9fa; border-bottom: 2px solid #ecf0f1; }
+        td { padding: 14px 18px; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #444; }
+        tr:last-child td { border-bottom: none; }
+        tr:hover td { background: #f8f9fa; }
+        .badge { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; }
+        .badge-green { background: #d4edda; color: #155724; }
+        .badge-blue { background: #cce5ff; color: #004085; }
+        .loading { text-align: center; padding: 40px; color: #7f8c8d; }
+        .error-msg { text-align: center; padding: 30px; color: #e74c3c; }
+        .mobile-hide { display: none; }
+        @media(min-width: 600px) { .mobile-hide { display: table-cell; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🌾 SmartAgri — Admin Dashboard</h1>
+        <span id="lastRefresh">Loading...</span>
+    </div>
+
+    <div class="container">
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div class="stat-label">Total Users</div>
+                <div class="stat-value" id="totalUsers">—</div>
+            </div>
+            <div class="stat-card blue">
+                <div class="stat-icon">📅</div>
+                <div class="stat-label">Registered Today</div>
+                <div class="stat-value" id="todayUsers">—</div>
+            </div>
+            <div class="stat-card orange">
+                <div class="stat-icon">🌱</div>
+                <div class="stat-label">Active Crops</div>
+                <div class="stat-value" id="activeCrops">—</div>
+            </div>
+            <div class="stat-card red">
+                <div class="stat-icon">✅</div>
+                <div class="stat-label">Completed Crops</div>
+                <div class="stat-value" id="completedCrops">—</div>
+            </div>
+        </div>
+
+        <!-- Users Table -->
+        <div class="section">
+            <div class="section-header">
+                <h2>👥 All Registered Users</h2>
+                <button class="refresh-btn" onclick="loadData()">🔄 Refresh</button>
+            </div>
+            <div id="usersTable"><div class="loading">Loading users...</div></div>
+        </div>
+
+        <!-- Recent Crop Activity -->
+        <div class="section">
+            <div class="section-header">
+                <h2>🌾 Recent Crop Activity</h2>
+            </div>
+            <div id="cropsTable"><div class="loading">Loading crops...</div></div>
+        </div>
+    </div>
+
+    <script>
+        async function loadData() {
+            document.getElementById('lastRefresh').textContent = 'Updated: ' + new Date().toLocaleTimeString();
+            try {
+                const res = await fetch('/api/admin/stats');
+                const data = await res.json();
+
+                document.getElementById('totalUsers').textContent = data.totalUsers;
+                document.getElementById('todayUsers').textContent = data.todayUsers;
+                document.getElementById('activeCrops').textContent = data.activeCrops;
+                document.getElementById('completedCrops').textContent = data.completedCrops;
+
+                // Users table
+                if (data.users.length === 0) {
+                    document.getElementById('usersTable').innerHTML = '<div class="loading">No users found</div>';
+                } else {
+                    document.getElementById('usersTable').innerHTML = `
+                        <table>
+                            <thead><tr>
+                                <th>#</th>
+                                <th>Username</th>
+                                <th>Mobile</th>
+                                <th class="mobile-hide">Registered On</th>
+                                <th>Status</th>
+                            </tr></thead>
+                            <tbody>
+                                ${data.users.map((u, i) => `
+                                <tr>
+                                    <td>${i + 1}</td>
+                                    <td><strong>${u.username}</strong></td>
+                                    <td>${u.mobile}</td>
+                                    <td class="mobile-hide">${new Date(u.createdAt).toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' })}</td>
+                                    <td><span class="badge badge-green">✅ Active</span></td>
+                                </tr>`).join('')}
+                            </tbody>
+                        </table>`;
+                }
+
+                // Crops table
+                if (data.recentCrops.length === 0) {
+                    document.getElementById('cropsTable').innerHTML = '<div class="loading">No crop activity yet</div>';
+                } else {
+                    document.getElementById('cropsTable').innerHTML = `
+                        <table>
+                            <thead><tr>
+                                <th>Crop</th>
+                                <th>User</th>
+                                <th class="mobile-hide">Location</th>
+                                <th>Progress</th>
+                                <th>Status</th>
+                            </tr></thead>
+                            <tbody>
+                                ${data.recentCrops.map(c => `
+                                <tr>
+                                    <td><strong>${c.cropName}</strong></td>
+                                    <td>${c.username || '—'}</td>
+                                    <td class="mobile-hide">${c.location?.area || '—'}</td>
+                                    <td>${c.completionPercentage}%</td>
+                                    <td><span class="badge ${c.status === 'completed' ? 'badge-green' : 'badge-blue'}">${c.status}</span></td>
+                                </tr>`).join('')}
+                            </tbody>
+                        </table>`;
+                }
+            } catch (e) {
+                document.getElementById('usersTable').innerHTML = `<div class="error-msg">❌ Error: ${e.message}</div>`;
+            }
+        }
+
+        loadData();
+    </script>
+</body>
+</html>

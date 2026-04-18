@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Season-Wise Crop Recommendations - SmartAgri AI</title>
+    <link rel="stylesheet" href="css/home-style.css">
+    <style>
+        .season-tabs {
+            display: flex;
+            gap: 15px;
+            margin: 30px 0;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .season-tab {
+            padding: 15px 40px;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .season-tab.summer {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            color: white;
+        }
+        
+        .season-tab.winter {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+        }
+        
+        .season-tab.monsoon {
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+            color: white;
+        }
+        
+        .season-tab:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+        
+        .season-tab.active {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        
+        .season-content {
+            display: none;
+        }
+        
+        .season-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .season-header {
+            text-align: center;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            color: white;
+        }
+        
+        .season-header.summer {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+        }
+        
+        .season-header.winter {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+        }
+        
+        .season-header.monsoon {
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+        }
+        
+        .season-header h2 {
+            margin: 0 0 10px 0;
+            font-size: 32px;
+        }
+        
+        .season-header p {
+            margin: 0;
+            font-size: 16px;
+            opacity: 0.95;
+        }
+        
+        .crop-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .crop-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .crop-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .crop-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        
+        .crop-info {
+            padding: 20px;
+        }
+        
+        .crop-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+        
+        .crop-category {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #ecf0f1;
+            border-radius: 15px;
+            font-size: 12px;
+            color: #7f8c8d;
+            margin-bottom: 12px;
+        }
+        
+        .crop-details {
+            font-size: 14px;
+            color: #7f8c8d;
+            line-height: 1.8;
+        }
+        
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+        }
+        
+        .detail-label {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .start-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .start-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+        }
+        
+        .soil-selector {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .soil-selector label {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-right: 15px;
+        }
+        
+        .soil-selector select {
+            padding: 12px 20px;
+            font-size: 16px;
+            border: 2px solid #ecf0f1;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            min-width: 250px;
+        }
+        
+        .no-crops {
+            text-align: center;
+            padding: 60px 20px;
+            color: #7f8c8d;
+        }
+        
+        .no-crops h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>🌾 SmartAgri</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="home.html" class="nav-item" data-i18n="navHome">🏠 Home</a>
+            <a href="crop-location.html" class="nav-item" data-i18n="navCropRec">🌾 Crop Recommendation</a>
+            <a href="choose-crop.html" class="nav-item" data-i18n="navChooseCrop">✅ Choose Your Crop</a>
+            <a href="season-recommendation.html" class="nav-item active" data-i18n="navSeason">🌦️ Season-Wise Crops</a>
+            <a href="market-price.html" class="nav-item" data-i18n="navMarket">📈 Market Price</a>
+            <a href="finance.html" class="nav-item" data-i18n="navFinance">💰 Financial Tracker</a>
+            <a href="status.html" class="nav-item" data-i18n="navStatus">📊 Crop Status</a>
+            <a href="profile.html" class="nav-item" data-i18n="navProfile">👤 Profile</a>
+        </nav>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="main-content">
+        <nav class="navbar">
+            <button class="hamburger" id="hamburger">☰</button>
+            <h1 class="navbar-title">Season-Wise Recommendations</h1>
+        </nav>
+
+        <div class="dashboard-container">
+            <div class="welcome-card">
+                <h2>🌦️ Season-Based Crop Recommendations</h2>
+                <p>Discover the best crops for each season based on your soil type</p>
+            </div>
+
+            <div class="soil-selector">
+                <label for="soilSelect">🌱 Select Your Soil Type:</label>
+                <select id="soilSelect" onchange="updateRecommendations()">
+                    <option value="">-- All Soil Types --</option>
+                    <option value="Red Loamy Soil">Red Loamy Soil</option>
+                    <option value="Red Sandy Soil">Red Sandy Soil</option>
+                    <option value="Black Cotton Soil">Black Cotton Soil</option>
+                    <option value="Black Soil">Black Soil</option>
+                    <option value="Alluvial Soil">Alluvial Soil</option>
+                    <option value="Deltaic Alluvial Soil">Deltaic Alluvial Soil</option>
+                    <option value="Coastal Alluvial Soil">Coastal Alluvial Soil</option>
+                    <option value="Laterite Soil">Laterite Soil</option>
+                    <option value="Saline Soil">Saline Soil</option>
+                    <option value="Forest Loam Soil">Forest Loam Soil</option>
+                    <option value="Mountain Soil">Mountain Soil</option>
+                    <option value="Mixed Red Black Soil">Mixed Red Black Soil</option>
+                </select>
+            </div>
+
+            <div class="season-tabs">
+                <button class="season-tab summer active" onclick="showSeason('summer')">
+                    ☀️ Summer Crops
+                </button>
+                <button class="season-tab winter" onclick="showSeason('winter')">
+                    ❄️ Winter Crops
+                </button>
+                <button class="season-tab monsoon" onclick="showSeason('monsoon')">
+                    🌧️ Monsoon Crops
+                </button>
+            </div>
+
+            <!-- Summer Season -->
+            <div id="summer-content" class="season-content active">
+                <div class="season-header summer">
+                    <h2>☀️ Summer Season Crops</h2>
+                    <p>Best crops for hot and dry summer months (March - June)</p>
+                </div>
+                <div id="summer-crops" class="crop-grid"></div>
+            </div>
+
+            <!-- Winter Season -->
+            <div id="winter-content" class="season-content">
+                <div class="season-header winter">
+                    <h2>❄️ Winter Season Crops</h2>
+                    <p>Best crops for cool winter months (November - February)</p>
+                </div>
+                <div id="winter-crops" class="crop-grid"></div>
+            </div>
+
+            <!-- Monsoon Season -->
+            <div id="monsoon-content" class="season-content">
+                <div class="season-header monsoon">
+                    <h2>🌧️ Monsoon Season Crops</h2>
+                    <p>Best crops for rainy monsoon months (June - September)</p>
+                </div>
+                <div id="monsoon-crops" class="crop-grid"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/translations.js" defer></script>
+    <script src="js/lang.js" defer></script>
+    <script src="js/crop-data.js" defer></script>
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+
+        hamburger.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        });
+
+        overlay.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+
+        function showSeason(season) {
+            // Update tabs
+            document.querySelectorAll('.season-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Update content
+            document.querySelectorAll('.season-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(`${season}-content`).classList.add('active');
+        }
+
+        function updateRecommendations() {
+            const soilType = document.getElementById('soilSelect').value;
+            
+            if (soilType) {
+                const recommendations = getSeasonWiseRecommendations(soilType);
+                displaySeasonCrops('summer', recommendations.Summer);
+                displaySeasonCrops('winter', recommendations.Winter);
+                displaySeasonCrops('monsoon', recommendations.Monsoon);
+            } else {
+                const allSeasons = getCropsBySeason();
+                displaySeasonCrops('summer', allSeasons.Summer.slice(0, 12));
+                displaySeasonCrops('winter', allSeasons.Winter.slice(0, 12));
+                displaySeasonCrops('monsoon', allSeasons.Monsoon.slice(0, 12));
+            }
+        }
+
+        function displaySeasonCrops(season, crops) {
+            const container = document.getElementById(`${season}-crops`);
+            
+            if (crops.length === 0) {
+                container.innerHTML = `
+                    <div class="no-crops">
+                        <h3>No crops available</h3>
+                        <p>Try selecting a different soil type</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = crops.map(crop => `
+                <div class="crop-card">
+                    <img src="${crop.image}" alt="${crop.name}" class="crop-image" onerror="this.src='https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=400&h=300&fit=crop'">
+                    <div class="crop-info">
+                        <div class="crop-name">${crop.name}</div>
+                        <div class="crop-category">${crop.category}</div>
+                        <div class="crop-details">
+                            <div class="detail-row">
+                                <span class="detail-label">Season:</span>
+                                <span>${crop.season}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Duration:</span>
+                                <span>${crop.duration}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Yield:</span>
+                                <span>${crop.yield}</span>
+                            </div>
+                        </div>
+                        <button class="start-btn" onclick="startCultivation('${crop.name}', '${crop.category}')">
+                            🌱 Start Cultivation
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function startCultivation(cropName, category) {
+            const soilType = document.getElementById('soilSelect').value || 'Not specified';
+            localStorage.setItem('selectedCrop', cropName);
+            localStorage.setItem('selectedCategory', category);
+            localStorage.setItem('selectedSoil', soilType);
+            
+            const params = new URLSearchParams({
+                crop: cropName,
+                soil: soilType
+            });
+            window.location.href = `crop-guide.html?${params.toString()}`;
+        }
+
+        // Load initial recommendations
+        document.addEventListener('DOMContentLoaded', () => {
+            updateRecommendations();
+        });
+    </script>
+</body>
+</html>
+
+

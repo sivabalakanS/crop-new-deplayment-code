@@ -1,0 +1,91 @@
+{
+  "Haveri": {
+    "Haveri": ["Haveri City", "Ranibennur", "Byadgi", "Hirekerur"],
+    "Ranibennur": ["Ranibennur", "Shiggaon", "Hanagal", "Rattihalli"],
+    "Byadgi": ["Byadgi", "Hirekerur", "Savanur", "Motebennur"]
+  },
+  "Kalaburagi": {
+    "Gulbarga": ["Gulbarga City", "Afzalpur", "Chincholi", "Sedam"],
+    "Afzalpur": ["Afzalpur", "Jewargi", "Shahabad", "Kamalapur"],
+    "Chincholi": ["Chincholi", "Chittapur", "Sedam", "Aland"],
+    "Sedam": ["Sedam", "Shahabad", "Chincholi", "Chittapur"]
+  },
+  "Kodagu": {
+    "Madikeri": ["Madikeri", "Virajpet", "Somwarpet", "Kushalnagar"],
+    "Virajpet": ["Virajpet", "Gonikoppal", "Siddapur", "Ponnampet"],
+    "Somwarpet": ["Somwarpet", "Kushalnagar", "Napoklu", "Shanivarsanthe"]
+  },
+  "Kolar": {
+    "Kolar": ["Kolar City", "Bangarpet", "Malur", "Mulbagal"],
+    "Bangarpet": ["Bangarpet", "KGF", "Robertsonpet", "Oorgaum"],
+    "Malur": ["Malur", "Srinivasapura", "Mulbagal", "Bethamangala"],
+    "Mulbagal": ["Mulbagal", "Srinivasapura", "Malur", "Chintamani"]
+  },
+  "Koppal": {
+    "Koppal": ["Koppal City", "Gangavathi", "Kushtagi", "Yelburga"],
+    "Gangavathi": ["Gangavathi", "Kanakagiri", "Karatagi", "Hirehalli"],
+    "Kushtagi": ["Kushtagi", "Yelburga", "Kustagi", "Munirabad"]
+  },
+  "Mandya": {
+    "Mandya": ["Mandya City", "Maddur", "Malavalli", "Pandavapura"],
+    "Maddur": ["Maddur", "Channapatna", "Ramanagara", "Kanakapura"],
+    "Malavalli": ["Malavalli", "Bannur", "Srirangapatna", "Nagamangala"],
+    "Pandavapura": ["Pandavapura", "Srirangapatna", "Krishnarajpet", "Nagamangala"]
+  },
+  "Mysuru": {
+    "Mysore": ["Mysore City", "Hunsur", "Nanjangud", "T. Narasipur"],
+    "Hunsur": ["Hunsur", "Piriyapatna", "Heggadadevankote", "Saragur"],
+    "Nanjangud": ["Nanjangud", "Gundlupet", "Chamarajanagar", "Kollegal"],
+    "T. Narasipur": ["T. Narasipur", "Bannur", "Bilikere", "Tirumakudal"]
+  },
+  "Raichur": {
+    "Raichur": ["Raichur City", "Manvi", "Sindhanur", "Devadurga"],
+    "Manvi": ["Manvi", "Lingsugur", "Maski", "Sindhanur"],
+    "Sindhanur": ["Sindhanur", "Sirwar", "Devadurga", "Manvi"]
+  },
+  "Ramanagara": {
+    "Ramanagara": ["Ramanagara City", "Channapatna", "Kanakapura", "Magadi"],
+    "Channapatna": ["Channapatna", "Maddur", "Sathanur", "Harohalli"],
+    "Kanakapura": ["Kanakapura", "Magadi", "Harohalli", "Bidadi"],
+    "Magadi": ["Magadi", "Ramanagara", "Solur", "Kunigal"]
+  },
+  "Shivamogga": {
+    "Shimoga": ["Shimoga City", "Bhadravati", "Sagar", "Hosanagar"],
+    "Bhadravati": ["Bhadravati", "Tarikere", "Thirthahalli", "Shikaripura"],
+    "Thirthahalli": ["Thirthahalli", "Shikaripura", "Sorab", "Soraba"],
+    "Sagar": ["Sagar", "Hosanagar", "Shiralakoppa", "Tirthahalli"]
+  },
+  "Tumakuru": {
+    "Tumkur": ["Tumkur City", "Tiptur", "Turuvekere", "Gubbi"],
+    "Madhugiri": ["Madhugiri", "Koratagere", "Pavagada", "Sira"],
+    "Tiptur": ["Tiptur", "Turuvekere", "Gubbi", "Kunigal"],
+    "Kunigal": ["Kunigal", "Chikkanayakanahalli", "Huliyar", "Arasikere"]
+  },
+  "Udupi": {
+    "Udupi": ["Udupi City", "Kundapura", "Karkala", "Brahmavara"],
+    "Kundapura": ["Kundapura", "Byndoor", "Gangolli", "Shankaranarayana"],
+    "Karkala": ["Karkala", "Hebri", "Ajekar", "Nitte"]
+  },
+  "Uttara Kannada": {
+    "Karwar": ["Karwar City", "Ankola", "Kumta", "Honnavar"],
+    "Sirsi": ["Sirsi", "Siddapur", "Yellapur", "Mundgod"],
+    "Honnavar": ["Honnavar", "Kumta", "Bhatkal", "Gokarna"],
+    "Yellapur": ["Yellapur", "Mundgod", "Joida", "Haliyal"]
+  },
+  "Vijayapura": {
+    "Bijapur": ["Bijapur City", "Indi", "Sindgi", "Muddebihal"],
+    "Indi": ["Indi", "Basavana Bagewadi", "Tikota", "Talikoti"],
+    "Sindgi": ["Sindgi", "Muddebihal", "Chadchan", "Nidagundi"],
+    "Muddebihal": ["Muddebihal", "Basavana Bagewadi", "Kolhar", "Talikoti"]
+  },
+  "Vijayanagara": {
+    "Hospet": ["Hospet", "Hagaribommanahalli", "Kottur", "Kudligi"],
+    "Hagaribommanahalli": ["Hagaribommanahalli", "Harapanahalli", "Hoovina Hadagali", "Kottur"],
+    "Kudligi": ["Kudligi", "Kampli", "Sandur", "Siruguppa"]
+  },
+  "Yadgir": {
+    "Yadgir": ["Yadgir City", "Shahapur", "Shorapur", "Surapura"],
+    "Shahapur": ["Shahapur", "Gurumitkal", "Hunasagi", "Wadagera"],
+    "Shorapur": ["Shorapur", "Surapura", "Kodekal", "Balichakra"]
+  }
+}

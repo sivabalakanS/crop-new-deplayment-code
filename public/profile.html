@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - SmartAgri AI</title>
+    <link rel="stylesheet" href="css/home-style.css">
+</head>
+<body>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>🌾 SmartAgri</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="home.html" class="nav-item" data-i18n="navHome">🏠 Home</a>
+            <a href="crop-location.html" class="nav-item" data-i18n="navCropRec">🌾 Crop Recommendation</a>
+            <a href="choose-crop.html" class="nav-item" data-i18n="navChooseCrop">✅ Choose Your Crop</a>
+            <a href="season-recommendation.html" class="nav-item" data-i18n="navSeason">🌦️ Season-Wise Crops</a>
+            <a href="market-price.html" class="nav-item" data-i18n="navMarket">📈 Market Price</a>
+            <a href="finance.html" class="nav-item" data-i18n="navFinance">💰 Financial Tracker</a>
+            <a href="status.html" class="nav-item" data-i18n="navStatus">📊 Crop Status</a>
+            <a href="farmer-card.html" class="nav-item">🪪 Farmer ID Card</a>
+            <a href="profile.html" class="nav-item active" data-i18n="navProfile">👤 Profile</a>
+        </nav>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="main-content">
+        <nav class="navbar">
+            <button class="hamburger" id="hamburger">☰</button>
+            <h1 class="navbar-title">SmartAgri AI</h1>
+        </nav>
+
+        <div class="dashboard-container">
+            <div class="profile-container">
+                <div class="profile-card">
+                    <div class="profile-avatar-container">
+                        <img id="profileImage" src="" alt="Profile" class="profile-image">
+                        <label for="imageUpload" class="upload-btn">📷</label>
+                        <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+                    </div>
+                    <h2 data-i18n="myProfile">My Profile</h2>
+                    
+                    <div class="profile-info">
+                        <div class="info-item">
+                            <label data-i18n="usernameLabel">Username</label>
+                            <p id="profileUsername">Loading...</p>
+                        </div>
+                        
+                        <div class="info-item">
+                            <label data-i18n="mobileLabel">Mobile Number</label>
+                            <p id="profileMobile">Loading...</p>
+                        </div>
+                        
+                        <div class="info-item">
+                            <label data-i18n="createdLabel">Account Created</label>
+                            <p id="profileCreated">Loading...</p>
+                        </div>
+                        
+                        <div class="info-item">
+                            <label data-i18n="languageLabel">Language Preference</label>
+                            <select id="languageSelect" class="language-select">
+                                <option value="en">English</option>
+                                <option value="ta">Tamil (தமிழ்)</option>
+                                <option value="hi">Hindi (हिंदी)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-logout" id="logoutBtn" data-i18n="logout">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/translations.js"></script>
+    <script src="js/lang.js"></script>
+    <script src="js/profile-script.js"></script>
+</body>
+</html>
+

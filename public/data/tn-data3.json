@@ -1,0 +1,63 @@
+{
+  "Thoothukudi": {
+    "Thoothukudi": ["Thoothukudi City", "Tiruchendur", "Srivaikundam", "Ottapidaram"],
+    "Kovilpatti": ["Kovilpatti", "Kayathar", "Vilathikulam", "Ettayapuram"],
+    "Sathankulam": ["Sathankulam", "Eral", "Udangudi", "Alwarthirunagari"]
+  },
+  "Tiruchirappalli": {
+    "Tiruchirappalli": ["Srirangam", "Lalgudi", "Manachanallur", "Musiri"],
+    "Srirangam": ["Srirangam", "Thiruverumbur", "Thuraiyur", "Manapparai"],
+    "Lalgudi": ["Lalgudi", "Pullambadi", "Manikandam", "Vaiyampatti"],
+    "Musiri": ["Musiri", "Thottiyam", "Thuraiyur", "Uppiliapuram"]
+  },
+  "Tirunelveli": {
+    "Tirunelveli": ["Tirunelveli City", "Palayamkottai", "Ambasamudram", "Nanguneri"],
+    "Ambasamudram": ["Ambasamudram", "Papanasam", "Kallidaikurichi", "Cheranmahadevi"],
+    "Palayamkottai": ["Palayamkottai", "Melagaram", "Thisayanvilai", "Radhapuram"]
+  },
+  "Tirupathur": {
+    "Tirupathur": ["Tirupathur", "Ambur", "Vaniyambadi", "Natrampalli"],
+    "Ambur": ["Ambur", "Gudiyatham", "Vaniyambadi", "Jolarpet"],
+    "Vaniyambadi": ["Vaniyambadi", "Tirupathur", "Natrampalli", "Alangayam"]
+  },
+  "Tiruppur": {
+    "Tiruppur": ["Tiruppur City", "Avinashi", "Palladam", "Udumalpet"],
+    "Dharapuram": ["Dharapuram", "Kangeyam", "Madathukulam", "Kundadam"],
+    "Avinashi": ["Avinashi", "Tiruppur North", "Vellakovil", "Pongalur"],
+    "Udumalpet": ["Udumalpet", "Madathukulam", "Palladam", "Pongalur"]
+  },
+  "Tiruvallur": {
+    "Tiruvallur": ["Tiruvallur", "Poonamallee", "Avadi", "Ambattur"],
+    "Poonamallee": ["Poonamallee", "Kundrathur", "Porur", "Mangadu"],
+    "Ponneri": ["Ponneri", "Gummidipoondi", "Minjur", "Ennore"],
+    "Tiruttani": ["Tiruttani", "Pallipattu", "Arakkonam", "RK Pet"]
+  },
+  "Tiruvannamalai": {
+    "Tiruvannamalai": ["Tiruvannamalai", "Polur", "Chengam", "Arani"],
+    "Polur": ["Polur", "Kalasapakkam", "Chetpet", "Thandrampet"],
+    "Chengam": ["Chengam", "Jamunamarathur", "Pudupalayam", "Keelpennathur"],
+    "Arani": ["Arani", "Cheyyar", "Vandavasi", "Thellar"]
+  },
+  "Tiruvarur": {
+    "Tiruvarur": ["Tiruvarur", "Mannargudi", "Nannilam", "Thiruthuraipoondi"],
+    "Mannargudi": ["Mannargudi", "Thirukkuvalai", "Needamangalam", "Muthupet"],
+    "Nannilam": ["Nannilam", "Kudavasal", "Valangaiman", "Koradacherry"]
+  },
+  "Vellore": {
+    "Vellore": ["Vellore City", "Katpadi", "Gudiyatham", "Pernambut"],
+    "Katpadi": ["Katpadi", "Sholinghur", "Arcot", "Ranipet"],
+    "Gudiyatham": ["Gudiyatham", "Ambur", "Vaniyambadi", "Jolarpet"]
+  },
+  "Viluppuram": {
+    "Viluppuram": ["Viluppuram", "Tindivanam", "Gingee", "Vanur"],
+    "Tindivanam": ["Tindivanam", "Marakkanam", "Mailam", "Vikravandi"],
+    "Gingee": ["Gingee", "Melmalaiyanur", "Vallam", "Olakkur"],
+    "Kallakurichi": ["Kallakurichi", "Sankarapuram", "Ulundurpet", "Chinnasalem"]
+  },
+  "Virudhunagar": {
+    "Virudhunagar": ["Virudhunagar", "Sivakasi", "Rajapalayam", "Srivilliputhur"],
+    "Sivakasi": ["Sivakasi", "Sattur", "Tiruchuli", "Vembakottai"],
+    "Rajapalayam": ["Rajapalayam", "Srivilliputhur", "Watrap", "Krishnankoil"],
+    "Aruppukottai": ["Aruppukottai", "Kariyapatti", "Tiruchuli", "Narikudi"]
+  }
+}

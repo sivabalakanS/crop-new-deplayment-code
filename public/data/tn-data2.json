@@ -1,0 +1,75 @@
+{
+  "Madurai": {
+    "Madurai North": ["Thiruparankundram", "Melur", "Vadipatti", "Usilampatti"],
+    "Madurai South": ["Madurai City", "Tirumangalam", "Kalligudi", "Sedapatti"],
+    "Madurai East": ["Alanganallur", "Kottampatti", "Thiruppalai", "Sholavandan"],
+    "Melur": ["Melur", "Vadipatti", "Usilampatti", "Thiruparankundram"]
+  },
+  "Mayiladuthurai": {
+    "Mayiladuthurai": ["Mayiladuthurai", "Sirkali", "Tharangambadi", "Kuthalam"],
+    "Sirkali": ["Sirkali", "Kollidam", "Tharangambadi", "Sembanarkoil"],
+    "Kuthalam": ["Kuthalam", "Thirukattupalli", "Koradacherry", "Adiramapattinam"]
+  },
+  "Nagapattinam": {
+    "Nagapattinam": ["Nagapattinam", "Kilvelur", "Vedaranyam", "Thirukkuvalai"],
+    "Mayiladuthurai": ["Mayiladuthurai", "Sirkali", "Tharangambadi", "Kuthalam"],
+    "Vedaranyam": ["Vedaranyam", "Kodiyakarai", "Pushpavanam", "Keechankuppam"]
+  },
+  "Namakkal": {
+    "Namakkal": ["Namakkal", "Rasipuram", "Tiruchengode", "Paramathi Velur"],
+    "Tiruchengode": ["Tiruchengode", "Vennandur", "Sendamangalam", "Komarapalayam"],
+    "Rasipuram": ["Rasipuram", "Paramathi", "Velur", "Namagiripettai"]
+  },
+  "Nilgiris": {
+    "Udhagamandalam": ["Ooty", "Coonoor", "Kotagiri", "Gudalur"],
+    "Coonoor": ["Coonoor", "Wellington", "Ketti", "Aravenu"],
+    "Gudalur": ["Gudalur", "Pandalur", "Devala", "Nelliyalam"]
+  },
+  "Perambalur": {
+    "Perambalur": ["Perambalur", "Kunnam", "Veppanthattai", "Alathur"],
+    "Kunnam": ["Kunnam", "Veppanthattai", "Elambalur", "Valikandapuram"],
+    "Veppanthattai": ["Veppanthattai", "Alathur", "Esanai", "Valikandapuram"]
+  },
+  "Pudukkottai": {
+    "Pudukkottai": ["Pudukkottai", "Aranthangi", "Gandarvakottai", "Illupur"],
+    "Aranthangi": ["Aranthangi", "Avudaiyarkoil", "Karambakudi", "Ponnamaravathi"],
+    "Alangudi": ["Alangudi", "Thirumayam", "Viralimalai", "Kulathur"]
+  },
+  "Ramanathapuram": {
+    "Ramanathapuram": ["Ramanathapuram", "Paramakudi", "Rameswaram", "Mudukulathur"],
+    "Rameswaram": ["Rameswaram", "Pamban", "Mandapam", "Thangachimadam"],
+    "Tiruvadanai": ["Tiruvadanai", "Kadaladi", "Bogalur", "Nainarkoil"]
+  },
+  "Ranipet": {
+    "Ranipet": ["Ranipet", "Arakkonam", "Arcot", "Walajah"],
+    "Arakkonam": ["Arakkonam", "Sholinghur", "Nemili", "Thimiri"],
+    "Arcot": ["Arcot", "Walajah", "Timiri", "Kaveripakkam"]
+  },
+  "Salem": {
+    "Salem": ["Salem City", "Attur", "Mettur", "Omalur"],
+    "Sankagiri": ["Sankagiri", "Edappadi", "Vazhapadi", "Yercaud"],
+    "Attur": ["Attur", "Gangavalli", "Thalaivasal", "Pethanaickenpalayam"],
+    "Mettur": ["Mettur", "Mecheri", "Taramangalam", "Kolathur"]
+  },
+  "Sivaganga": {
+    "Sivaganga": ["Sivaganga", "Karaikudi", "Devakottai", "Manamadurai"],
+    "Karaikudi": ["Karaikudi", "Devakottai", "Thiruppathur", "Ilayangudi"],
+    "Manamadurai": ["Manamadurai", "Singampunari", "Tirupuvanam", "Kallal"]
+  },
+  "Tenkasi": {
+    "Tenkasi": ["Tenkasi", "Shencottai", "Alangulam", "Kadayanallur"],
+    "Shencottai": ["Shencottai", "Sivagiri", "Veerakeralampudur", "Sankarankovil"],
+    "Alangulam": ["Alangulam", "Kadayanallur", "Vasudevanallur", "Keelapavoor"]
+  },
+  "Thanjavur": {
+    "Thanjavur": ["Thanjavur City", "Kumbakonam", "Papanasam", "Pattukkottai"],
+    "Kumbakonam": ["Kumbakonam", "Thiruvidaimarudur", "Swamimalai", "Darasuram"],
+    "Papanasam": ["Papanasam", "Ammapettai", "Thiruvaiyaru", "Budalur"],
+    "Pattukkottai": ["Pattukkottai", "Peravurani", "Orathanadu", "Thiruthuraipoondi"]
+  },
+  "Theni": {
+    "Theni": ["Theni", "Periyakulam", "Uthamapalayam", "Bodinayakanur"],
+    "Periyakulam": ["Periyakulam", "Chinnamanur", "Gudalur", "Cumbum"],
+    "Bodinayakanur": ["Bodinayakanur", "Myladumparai", "Andipatti", "Kamayagoundanpatti"]
+  }
+}

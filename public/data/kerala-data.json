@@ -1,0 +1,95 @@
+{
+  "Thiruvananthapuram": {
+    "Thiruvananthapuram": ["Thiruvananthapuram City", "Neyyattinkara", "Nedumangad", "Varkala"],
+    "Chirayinkeezhu": ["Chirayinkeezhu", "Attingal", "Parassala", "Kattakada"],
+    "Neyyattinkara": ["Neyyattinkara", "Balaramapuram", "Kallikkad", "Pallichal"],
+    "Nedumangad": ["Nedumangad", "Vamanapuram", "Aryanad", "Parassala"]
+  },
+  "Kollam": {
+    "Kollam": ["Kollam City", "Karunagappally", "Kottarakkara", "Punalur"],
+    "Karunagappally": ["Karunagappally", "Chavara", "Oachira", "Sasthamcotta"],
+    "Kottarakkara": ["Kottarakkara", "Kundara", "Anchal", "Kulathupuzha"],
+    "Punalur": ["Punalur", "Pathanapuram", "Kottarakkara", "Thenmala"]
+  },
+  "Pathanamthitta": {
+    "Pathanamthitta": ["Pathanamthitta City", "Adoor", "Thiruvalla", "Ranni"],
+    "Adoor": ["Adoor", "Kadambanadu", "Eraviperoor", "Aranmula"],
+    "Konni": ["Konni", "Kozhencherry", "Mallappally", "Pandalam"],
+    "Ranni": ["Ranni", "Chittar", "Seethathodu", "Vadasserikkara"],
+    "Thiruvalla": ["Thiruvalla", "Kozhencherry", "Mallappally", "Chennithala"]
+  },
+  "Alappuzha": {
+    "Alappuzha": ["Alappuzha City", "Cherthala", "Ambalappuzha", "Kuttanad"],
+    "Cherthala": ["Cherthala", "Aroor", "Ezhupunna", "Thuravoor"],
+    "Chengannur": ["Chengannur", "Mavelikkara", "Haripad", "Kayamkulam"],
+    "Karthikappally": ["Karthikappally", "Harippad", "Karuvatta", "Pallippad"],
+    "Kuttanad": ["Kuttanad", "Champakulam", "Edathua", "Thakazhy"]
+  },
+  "Kottayam": {
+    "Kottayam": ["Kottayam City", "Pala", "Changanassery", "Ettumanoor"],
+    "Vaikom": ["Vaikom", "Meenachil", "Kanjirappally", "Mundakayam"],
+    "Pala": ["Pala", "Erattupetta", "Ramapuram", "Kaduthuruthy"],
+    "Changanassery": ["Changanassery", "Kottayam", "Vaikom", "Ettumanoor"],
+    "Kanjirappally": ["Kanjirappally", "Mundakayam", "Erattupetta", "Poonjar"]
+  },
+  "Idukki": {
+    "Thodupuzha": ["Thodupuzha", "Muttom", "Udumbanchola", "Adimali"],
+    "Devikulam": ["Munnar", "Devikulam", "Marayoor", "Kanthalloor"],
+    "Peerumedu": ["Peerumedu", "Nedumkandam", "Kumily", "Vandiperiyar"],
+    "Udumbanchola": ["Udumbanchola", "Munnar", "Marayoor", "Kanthalloor"],
+    "Idukki": ["Idukki", "Painavu", "Thodupuzha", "Kattappana"]
+  },
+  "Ernakulam": {
+    "Ernakulam": ["Kochi City", "Aluva", "Perumbavoor", "Muvattupuzha"],
+    "Kanayannur": ["Kanayannur", "Thrippunithura", "Maradu", "Kalamassery"],
+    "Kothamangalam": ["Kothamangalam", "Piravom", "Ramamangalam", "Koothattukulam"],
+    "Aluva": ["Aluva", "Angamaly", "Kalady", "Perumbavoor"],
+    "Muvattupuzha": ["Muvattupuzha", "Piravom", "Kothamangalam", "Koothattukulam"],
+    "Kunnathunad": ["Perumbavoor", "Rayamangalam", "Kunnathunadu", "Mudakkuzha"]
+  },
+  "Thrissur": {
+    "Thrissur": ["Thrissur City", "Chalakudy", "Kodungallur", "Irinjalakuda"],
+    "Chavakkad": ["Chavakkad", "Guruvayur", "Mala", "Wadakkanchery"],
+    "Kunnamkulam": ["Kunnamkulam", "Chelakkara", "Anthikkad", "Mullassery"],
+    "Kodungallur": ["Kodungallur", "Methala", "Mala", "Irinjalakuda"],
+    "Chalakudy": ["Chalakudy", "Kodakara", "Athirappilly", "Pariyaram"]
+  },
+  "Palakkad": {
+    "Palakkad": ["Palakkad City", "Ottapalam", "Chittur", "Mannarkkad"],
+    "Alathur": ["Alathur", "Pattambi", "Cherpulassery", "Thrithala"],
+    "Chittur": ["Chittur", "Kollengode", "Nemmara", "Vadakkencherry"],
+    "Ottapalam": ["Ottapalam", "Shoranur", "Pattambi", "Lakkidi"],
+    "Mannarkkad": ["Mannarkkad", "Agali", "Attappady", "Sholayur"]
+  },
+  "Malappuram": {
+    "Malappuram": ["Malappuram City", "Manjeri", "Perinthalmanna", "Tirur"],
+    "Nilambur": ["Nilambur", "Wandoor", "Karuvarakundu", "Edavanna"],
+    "Ponnani": ["Ponnani", "Tanur", "Tirurangadi", "Parappanangadi"],
+    "Tirur": ["Tirur", "Kuttippuram", "Tanur", "Tirurangadi"],
+    "Perinthalmanna": ["Perinthalmanna", "Manjeri", "Malappuram", "Edavanna"]
+  },
+  "Kozhikode": {
+    "Kozhikode": ["Kozhikode City", "Vadakara", "Koyilandy", "Quilandy"],
+    "Thamarassery": ["Thamarassery", "Koduvally", "Kunnamangalam", "Balussery"],
+    "Vatakara": ["Vatakara", "Nadapuram", "Kakkodi", "Memunda"],
+    "Koyilandy": ["Koyilandy", "Thamarassery", "Quilandy", "Balussery"]
+  },
+  "Wayanad": {
+    "Kalpetta": ["Kalpetta", "Vythiri", "Meppadi", "Pozhuthana"],
+    "Mananthavady": ["Mananthavady", "Thirunelli", "Thondernad", "Edavaka"],
+    "Sulthan Bathery": ["Sulthan Bathery", "Nenmeni", "Meenangadi", "Ambalavayal"]
+  },
+  "Kannur": {
+    "Kannur": ["Kannur City", "Thalassery", "Payyanur", "Iritty"],
+    "Taliparamba": ["Taliparamba", "Peravoor", "Mattannur", "Kuthuparamba"],
+    "Thalassery": ["Thalassery", "Mahe", "Dharmadam", "Kadirur"],
+    "Payyanur": ["Payyanur", "Ezhome", "Kottiyoor", "Peravoor"],
+    "Iritty": ["Iritty", "Peravoor", "Kelakam", "Aralam"]
+  },
+  "Kasaragod": {
+    "Kasaragod": ["Kasaragod City", "Kanhangad", "Nileshwar", "Manjeshwar"],
+    "Hosdurg": ["Hosdurg", "Vellarikundu", "Cheruvathur", "Bedadka"],
+    "Kanhangad": ["Kanhangad", "Panathady", "Madhur", "Pallikkara"],
+    "Manjeshwar": ["Manjeshwar", "Uppala", "Puthige", "Kumbla"]
+  }
+}

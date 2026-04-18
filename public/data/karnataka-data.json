@@ -1,0 +1,84 @@
+{
+  "Bagalkot": {
+    "Bagalkot": ["Bagalkot City", "Badami", "Bilagi", "Guledgudda"],
+    "Badami": ["Badami", "Kaladgi", "Kerur", "Terdal"],
+    "Jamkhandi": ["Jamkhandi", "Mudhol", "Lokapur", "Rabkavi"]
+  },
+  "Ballari": {
+    "Bellary": ["Bellary City", "Hospet", "Sandur", "Siruguppa"],
+    "Hospet": ["Hospet", "Kampli", "Kottur", "Kudligi"],
+    "Sandur": ["Sandur", "Donimalai", "Toranagallu", "Kamalapuram"]
+  },
+  "Belagavi": {
+    "Belgaum": ["Belgaum City", "Bailhongal", "Saundatti", "Ramdurg"],
+    "Chikodi": ["Chikodi", "Athani", "Kagwad", "Hukkeri"],
+    "Gokak": ["Gokak", "Mudalgi", "Raybag", "Khanapur"],
+    "Bailhongal": ["Bailhongal", "Kittur", "Ramadurga", "Savadatti"]
+  },
+  "Bengaluru Rural": {
+    "Devanahalli": ["Devanahalli", "Doddaballapur", "Hoskote", "Nelamangala"],
+    "Doddaballapur": ["Doddaballapur", "Devanahalli", "Vijayapura", "Nandi"],
+    "Hosakote": ["Hosakote", "Sulibele", "Jadigenahalli", "Kasaba"],
+    "Nelamangala": ["Nelamangala", "Hesaraghatta", "Dobbaspet", "Dabaspet"]
+  },
+  "Bengaluru Urban": {
+    "Bangalore North": ["Yelahanka", "Hebbal", "Devanahalli", "Doddaballapur"],
+    "Bangalore South": ["Jayanagar", "BTM Layout", "Banashankari", "Kengeri"],
+    "Bangalore East": ["Whitefield", "Marathahalli", "KR Puram", "Hosakote"],
+    "Bangalore West": ["Rajajinagar", "Vijayanagar", "Malleshwaram", "Yeshwanthpur"],
+    "Anekal": ["Anekal", "Jigani", "Chandapura", "Attibele"]
+  },
+  "Bidar": {
+    "Bidar": ["Bidar City", "Humnabad", "Bhalki", "Aurad"],
+    "Humnabad": ["Humnabad", "Chitgoppa", "Kamalnagar", "Hulsoor"],
+    "Bhalki": ["Bhalki", "Hallikhed", "Basavakalyan", "Aurad"]
+  },
+  "Chamarajanagar": {
+    "Chamarajanagar": ["Chamarajanagar", "Gundlupet", "Kollegal", "Yelandur"],
+    "Gundlupet": ["Gundlupet", "Begur", "Hanur", "Terakanambi"],
+    "Kollegal": ["Kollegal", "Haradanahalli", "Sathegala", "Yelandur"]
+  },
+  "Chikkaballapur": {
+    "Chikkaballapur": ["Chikkaballapur", "Bagepalli", "Chintamani", "Gauribidanur"],
+    "Bagepalli": ["Bagepalli", "Gudibande", "Shidlaghatta", "Gowribidanur"],
+    "Chintamani": ["Chintamani", "Srinivasapura", "Sidlaghatta", "Nandi"]
+  },
+  "Chikkamagaluru": {
+    "Chikmagalur": ["Chikmagalur City", "Kadur", "Koppa", "Mudigere"],
+    "Tarikere": ["Tarikere", "Sringeri", "Narasimharajapura", "Ajjampura"],
+    "Kadur": ["Kadur", "Birur", "Lakya", "Koppa"],
+    "Mudigere": ["Mudigere", "Balehonnur", "Kalasa", "Kudremukh"]
+  },
+  "Chitradurga": {
+    "Chitradurga": ["Chitradurga City", "Challakere", "Hiriyur", "Holalkere"],
+    "Challakere": ["Challakere", "Molakalmuru", "Hosadurga", "Jagalur"],
+    "Hiriyur": ["Hiriyur", "Holalkere", "Hosadurga", "Chitradurga"]
+  },
+  "Dakshina Kannada": {
+    "Mangalore": ["Mangalore City", "Bantwal", "Belthangady", "Puttur"],
+    "Bantwal": ["Bantwal", "Vittal", "Thumbay", "Panemangalore"],
+    "Belthangady": ["Belthangady", "Venoor", "Laila", "Ujire"],
+    "Puttur": ["Puttur", "Sullia", "Kadaba", "Uppinangady"]
+  },
+  "Davangere": {
+    "Davanagere": ["Davanagere City", "Harihara", "Honnali", "Jagalur"],
+    "Harihara": ["Harihara", "Harapanahalli", "Harihar", "Nyamathi"],
+    "Channagiri": ["Channagiri", "Honnali", "Nyamathi", "Jagalur"]
+  },
+  "Dharwad": {
+    "Dharwad": ["Dharwad City", "Hubli", "Navalgund", "Alnavar"],
+    "Hubli": ["Hubli City", "Kalghatgi", "Kundgol", "Dharwad"],
+    "Kalghatgi": ["Kalghatgi", "Kundgol", "Navalgund", "Annigeri"]
+  },
+  "Gadag": {
+    "Gadag": ["Gadag City", "Mundargi", "Nargund", "Ron"],
+    "Mundargi": ["Mundargi", "Shirahatti", "Lakshmeshwar", "Nargund"],
+    "Ron": ["Ron", "Gajendragad", "Lakshmeshwar", "Nargund"]
+  },
+  "Hassan": {
+    "Hassan": ["Hassan City", "Holenarasipura", "Arkalgud", "Belur"],
+    "Channarayapatna": ["Channarayapatna", "Sakleshpur", "Alur", "Arasikere"],
+    "Belur": ["Belur", "Halebidu", "Javagal", "Mosale"],
+    "Sakleshpur": ["Sakleshpur", "Yeslur", "Hettur", "Hanbal"]
+  }
+}

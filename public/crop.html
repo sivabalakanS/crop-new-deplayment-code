@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Recommendation - SmartAgri AI</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>🌾 SmartAgri</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="home.html" class="nav-item">
+                <span class="icon">🏠</span>
+                <span>Home</span>
+            </a>
+            <a href="crop.html" class="nav-item active">
+                <span class="icon">🌱</span>
+                <span>Crop Recommendation</span>
+            </a>
+            <a href="finance.html" class="nav-item">
+                <span class="icon">💰</span>
+                <span>Financial Tracker</span>
+            </a>
+            <a href="profile.html" class="nav-item">
+                <span class="icon">👤</span>
+                <span>Profile</span>
+            </a>
+        </nav>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="main-content">
+        <nav class="navbar">
+            <div class="navbar-left">
+                <button class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <h1 class="navbar-title">SmartAgri AI</h1>
+            </div>
+            <button class="btn-logout" id="logoutBtn">Logout</button>
+        </nav>
+
+        <div class="dashboard-container">
+            <h2 style="margin-bottom: 24px;">🌱 Crop Recommendation</h2>
+            <div class="welcome-section">
+                <h2>AI-Powered Crop Suggestions</h2>
+                <p>Get personalized crop recommendations based on soil and climate data</p>
+            </div>
+            <div class="feature-card" style="max-width: 600px; margin: 0 auto;">
+                <h3>🌾 Start Crop Recommendation</h3>
+                <p>Select your location and get AI-powered crop suggestions</p>
+                <a href="crop-location.html" class="btn-feature" style="display: inline-block; padding: 12px 32px; background: #2ecc71; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; margin-top: 16px;">Select Location →</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/translations.js"></script>
+    <script src="js/lang.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

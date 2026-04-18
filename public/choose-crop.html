@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Crop - SmartAgri AI</title>
+    <link rel="stylesheet" href="css/home-style.css">
+    <style>
+        .choose-container { width: 100%; }
+
+        .page-header {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            padding: 36px 40px;
+            border-radius: 16px;
+            margin-bottom: 28px;
+        }
+        .page-header h2 { font-size: 28px; margin-bottom: 6px; }
+        .page-header p { opacity: 0.9; font-size: 15px; }
+
+        .form-card {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            margin-bottom: 28px;
+        }
+        .form-card h3 { font-size: 18px; color: #2c3e50; margin-bottom: 24px; font-weight: 700; }
+
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label {
+            display: block; font-size: 14px; font-weight: 600;
+            color: #2c3e50; margin-bottom: 8px;
+        }
+        .form-group select, .form-group input {
+            width: 100%; padding: 12px 14px;
+            border: 2px solid #ecf0f1; border-radius: 10px;
+            font-size: 15px; color: #2c3e50; background: white;
+            transition: border-color 0.2s; outline: none;
+        }
+        .form-group select:focus, .form-group input:focus { border-color: #2ecc71; }
+
+        .btn-check {
+            width: 100%; padding: 14px;
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white; border: none; border-radius: 10px;
+            font-size: 16px; font-weight: 700; cursor: pointer;
+            transition: all 0.2s; letter-spacing: 0.3px;
+        }
+        .btn-check:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(46,204,113,0.35); }
+
+        /* Result Card */
+        .result-card {
+            border-radius: 16px; padding: 28px 32px;
+            display: none; animation: slideIn 0.4s ease;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .result-card.suitable   { background: #f0fdf4; border: 2px solid #2ecc71; }
+        .result-card.unsuitable { background: #fff5f5; border: 2px solid #e74c3c; }
+
+        .result-top { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+        .result-icon { font-size: 48px; line-height: 1; }
+        .result-title { font-size: 22px; font-weight: 800; }
+        .result-card.suitable   .result-title { color: #1a7a3c; }
+        .result-card.unsuitable .result-title { color: #c0392b; }
+        .result-subtitle { font-size: 14px; color: #666; margin-top: 4px; }
+
+        .result-divider { border: none; border-top: 1px solid #e0e0e0; margin: 16px 0; }
+
+        .result-detail { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; font-size: 14px; color: #444; }
+        .result-detail strong { color: #2c3e50; min-width: 80px; }
+
+        .reason-box {
+            background: #fff3cd; border-left: 4px solid #f39c12;
+            border-radius: 8px; padding: 12px 16px;
+            font-size: 14px; color: #7d5a00; margin-top: 12px;
+        }
+        .reason-box strong { display: block; margin-bottom: 4px; }
+
+        .alternatives-section { margin-top: 20px; }
+        .alternatives-section h4 { font-size: 15px; font-weight: 700; color: #2c3e50; margin-bottom: 12px; }
+        .alt-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+        .alt-chip {
+            background: #e8f5e9; color: #1a7a3c;
+            padding: 6px 14px; border-radius: 50px;
+            font-size: 13px; font-weight: 600;
+            cursor: pointer; transition: background 0.2s;
+        }
+        .alt-chip:hover { background: #c8e6c9; }
+
+        .crop-info-box {
+            background: #f8f9fa; border-radius: 10px;
+            padding: 16px; margin-top: 16px;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+        }
+        .info-pill { font-size: 13px; color: #555; }
+        .info-pill strong { color: #2c3e50; display: block; font-size: 12px; margin-bottom: 2px; }
+
+        /* Autocomplete suggestions */
+        .suggestions-box {
+            position: absolute; top: 100%; left: 0; right: 0;
+            background: white; border: 2px solid #2ecc71;
+            border-top: none; border-radius: 0 0 10px 10px;
+            max-height: 200px; overflow-y: auto;
+            z-index: 100; display: none;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+        }
+        .suggestion-item {
+            padding: 10px 14px; cursor: pointer;
+            font-size: 14px; color: #2c3e50;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .suggestion-item:last-child { border-bottom: none; }
+        .suggestion-item:hover { background: #f0fdf4; color: #1a7a3c; }
+        .suggestion-cat { font-size: 11px; color: #999; margin-left: auto; }
+
+        @media (max-width: 600px) {
+            .form-row { grid-template-columns: 1fr; }
+            .page-header { padding: 24px; }
+            .form-card { padding: 20px; }
+            .crop-info-box { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header"><h2>🌾 SmartAgri</h2></div>
+        <nav class="sidebar-nav">
+            <a href="home.html" class="nav-item" data-i18n="navHome">🏠 Home</a>
+            <a href="crop-location.html" class="nav-item" data-i18n="navCropRec">🌾 Crop Recommendation</a>
+            <a href="choose-crop.html" class="nav-item active" data-i18n="navChooseCrop">✅ Choose Your Crop</a>
+            <a href="season-recommendation.html" class="nav-item" data-i18n="navSeason">🌦️ Season-Wise Crops</a>
+            <a href="market-price.html" class="nav-item" data-i18n="navMarket">📈 Market Price</a>
+            <a href="finance.html" class="nav-item" data-i18n="navFinance">💰 Financial Tracker</a>
+            <a href="status.html" class="nav-item" data-i18n="navStatus">📊 Crop Status</a>
+            <a href="profile.html" class="nav-item" data-i18n="navProfile">👤 Profile</a>
+        </nav>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="main-content">
+        <nav class="navbar">
+            <button class="hamburger" id="hamburger">☰</button>
+            <h1 class="navbar-title">Choose Your Crop</h1>
+        </nav>
+
+        <div class="dashboard-container">
+            <div class="choose-container">
+
+                <div class="page-header">
+                    <h2>✅ Choose Your Crop</h2>
+                    <p>Check if your chosen crop is suitable for your land, location and soil type</p>
+                </div>
+
+                <div class="form-card">
+                    <h3>🌱 Enter Your Details</h3>
+
+                    <!-- Crop text input with suggestions -->
+                    <div class="form-group" style="position:relative">
+                        <label for="cropInput">🌾 Crop Name</label>
+                        <input type="text" id="cropInput" placeholder="Type crop name e.g. Rice, Tomato, Mango..." autocomplete="off" oninput="onCropInput()">
+                        <div id="cropSuggestions" class="suggestions-box"></div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="stateSelect">📍 State</label>
+                            <select id="stateSelect" onchange="onStateChange()">
+                                <option value="">-- Select State --</option>
+                                <option value="Tamil Nadu">Tamil Nadu</option>
+                                <option value="Kerala">Kerala</option>
+                                <option value="Karnataka">Karnataka</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="districtSelect">🏘️ District</label>
+                            <select id="districtSelect" disabled onchange="onDistrictChange()">
+                                <option value="">-- Select District --</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="talukSelect">🗺️ Taluk</label>
+                            <select id="talukSelect" disabled onchange="onTalukChange()">
+                                <option value="">-- Select Taluk --</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="areaSelect">📌 Area/Village</label>
+                            <select id="areaSelect" disabled>
+                                <option value="">-- Select Area --</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="soilSelect">🪨 Soil Type</label>
+                        <select id="soilSelect" disabled>
+                            <option value="">-- Select District first --</option>
+                        </select>
+                    </div>
+
+                    <button class="btn-check" onclick="checkSuitability()">🔍 Check Suitability</button>
+                </div>
+
+                <!-- Result -->
+                <div class="result-card" id="resultCard">
+                    <div class="result-top">
+                        <div class="result-icon" id="resultIcon"></div>
+                        <div>
+                            <div class="result-title" id="resultTitle"></div>
+                            <div class="result-subtitle" id="resultSubtitle"></div>
+                        </div>
+                    </div>
+
+                    <hr class="result-divider">
+
+                    <div class="result-detail"><strong>Crop:</strong> <span id="rCrop"></span></div>
+                    <div class="result-detail"><strong>Location:</strong> <span id="rLocation"></span></div>
+                    <div class="result-detail"><strong>Taluk:</strong> <span id="rTaluk"></span></div>
+                    <div class="result-detail"><strong>Area:</strong> <span id="rArea"></span></div>
+                    <div class="result-detail"><strong>Soil:</strong> <span id="rSoil"></span></div>
+
+                    <div class="crop-info-box" id="cropInfoBox"></div>
+
+                    <div class="reason-box" id="reasonBox" style="display:none">
+                        <strong>⚠️ Reason:</strong>
+                        <span id="reasonText"></span>
+                    </div>
+
+                    <div class="alternatives-section" id="altSection" style="display:none">
+                        <h4>💡 Recommended Alternatives for your soil:</h4>
+                        <div class="alt-chips" id="altChips"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="js/crop-data.js" defer></script>
+    <script src="js/location-data.js" defer></script>
+    <script src="js/soil-data.js" defer></script>
+    <script src="js/translations.js"></script>
+    <script src="js/lang.js"></script>
+    <script src="js/choose-crop.js" defer></script>
+</body>
+</html>
+

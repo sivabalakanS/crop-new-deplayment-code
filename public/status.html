@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Status - SmartAgri AI</title>
+    <link rel="stylesheet" href="css/home-style.css">
+    <style>
+        .status-container {
+            width: 100%;
+            padding: 20px;
+        }
+        
+        .status-tabs {
+            display: flex;
+            background: white;
+            border-radius: 10px;
+            padding: 5px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .tab-button {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-button.active {
+            background: #3498db;
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .crop-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        
+        .crop-status-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .crop-status-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .crop-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .crop-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .status-badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .status-current {
+            background: #3498db;
+        }
+        
+        .status-completed {
+            background: #27ae60;
+        }
+        
+        .crop-details {
+            color: #7f8c8d;
+            margin-bottom: 15px;
+        }
+        
+        .progress-section {
+            margin: 15px 0;
+        }
+        
+        .progress-bar {
+            background: #ecf0f1;
+            border-radius: 10px;
+            height: 15px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(90deg, #3498db, #2980b9);
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-fill.completed {
+            background: linear-gradient(90deg, #27ae60, #229954);
+        }
+        
+        .crop-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: #3498db;
+            color: white;
+        }
+        
+        .btn-success {
+            background: #27ae60;
+            color: white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #7f8c8d;
+        }
+        
+        .empty-state h3 {
+            margin-bottom: 10px;
+            color: #95a5a6;
+        }
+        
+        .date-info {
+            font-size: 12px;
+            color: #95a5a6;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>🌾 SmartAgri</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="home.html" class="nav-item" data-i18n="navHome">🏠 Home</a>
+            <a href="crop-location.html" class="nav-item" data-i18n="navCropRec">🌾 Crop Recommendation</a>
+            <a href="choose-crop.html" class="nav-item" data-i18n="navChooseCrop">✅ Choose Your Crop</a>
+            <a href="season-recommendation.html" class="nav-item" data-i18n="navSeason">🌦️ Season-Wise Crops</a>
+            <a href="market-price.html" class="nav-item" data-i18n="navMarket">📈 Market Price</a>
+            <a href="finance.html" class="nav-item" data-i18n="navFinance">💰 Financial Tracker</a>
+            <a href="status.html" class="nav-item active" data-i18n="navStatus">📊 Crop Status</a>
+            <a href="farmer-card.html" class="nav-item">🪪 Farmer ID Card</a>
+            <a href="profile.html" class="nav-item" data-i18n="navProfile">👤 Profile</a>
+        </nav>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="main-content">
+        <nav class="navbar">
+            <button class="hamburger" id="hamburger">☰</button>
+            <h1 class="navbar-title">Crop Status</h1>
+        </nav>
+
+        <div class="status-container">
+            <div class="status-tabs">
+                <button class="tab-button active" onclick="switchTab('current')">Current Crops</button>
+                <button class="tab-button" onclick="switchTab('completed')">Previous Crops</button>
+            </div>
+
+            <div id="current-tab" class="tab-content active">
+                <div class="crop-grid" id="currentCropsGrid">
+                    <!-- Current crops will be loaded here -->
+                </div>
+            </div>
+
+            <div id="completed-tab" class="tab-content">
+                <div class="crop-grid" id="completedCropsGrid">
+                    <!-- Completed crops will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/translations.js"></script>
+    <script src="js/lang.js"></script>
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+
+        hamburger.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        });
+
+        overlay.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+
+        // Load status data on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadCurrentCrops();
+            loadCompletedCrops();
+        });
+
+        function switchTab(tab) {
+            // Update tab buttons
+            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Update tab content
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            document.getElementById(`${tab}-tab`).classList.add('active');
+        }
+
+        async function loadCurrentCrops() {
+            try {
+                const response = await fetch('/api/progress/current', {
+                    credentials: 'include'
+                });
+                const result = await response.json();
+
+                if (result.success) {
+                    displayCrops(result.data, 'currentCropsGrid', 'current');
+                } else {
+                    showEmptyState('currentCropsGrid', 'No current crops found', 'Start a new crop cultivation to track your progress');
+                }
+            } catch (error) {
+                console.error('Error loading current crops:', error);
+                showEmptyState('currentCropsGrid', 'Error loading data', 'Please refresh the page to try again');
+            }
+        }
+
+        async function loadCompletedCrops() {
+            try {
+                const response = await fetch('/api/progress/completed', {
+                    credentials: 'include'
+                });
+                const result = await response.json();
+
+                if (result.success) {
+                    displayCrops(result.data, 'completedCropsGrid', 'completed');
+                } else {
+                    showEmptyState('completedCropsGrid', 'No completed crops found', 'Complete your current crops to see them here');
+                }
+            } catch (error) {
+                console.error('Error loading completed crops:', error);
+                showEmptyState('completedCropsGrid', 'Error loading data', 'Please refresh the page to try again');
+            }
+        }
+
+        function displayCrops(crops, containerId, status) {
+            const container = document.getElementById(containerId);
+            
+            if (crops.length === 0) {
+                const message = status === 'current' ? 
+                    'No current crops found' : 'No completed crops found';
+                const subMessage = status === 'current' ? 
+                    'Start a new crop cultivation to track your progress' : 
+                    'Complete your current crops to see them here';
+                showEmptyState(containerId, message, subMessage);
+                return;
+            }
+
+            container.innerHTML = crops.map(crop => `
+                <div class="crop-status-card">
+                    <div class="crop-header">
+                        <div class="crop-name">${crop.cropName}</div>
+                        <div class="status-badge status-${crop.status}">${crop.status.toUpperCase()}</div>
+                    </div>
+                    
+                    <div class="crop-details">
+                        <p><strong>Location:</strong> ${crop.location.area || 'N/A'}</p>
+                        <p><strong>Soil:</strong> ${crop.soilType}</p>
+                        <p><strong>Started:</strong> ${new Date(crop.startDate).toLocaleDateString()}</p>
+                        ${crop.expectedHarvestDate ? `<p><strong>Expected Harvest:</strong> ${new Date(crop.expectedHarvestDate).toLocaleDateString()}</p>` : ''}
+                        ${crop.actualHarvestDate ? `<p><strong>Harvested:</strong> ${new Date(crop.actualHarvestDate).toLocaleDateString()}</p>` : ''}
+                    </div>
+                    
+                    <div class="progress-section">
+                        <div class="progress-bar">
+                            <div class="progress-fill ${crop.status === 'completed' ? 'completed' : ''}" 
+                                 style="width: ${crop.completionPercentage}%"></div>
+                        </div>
+                        <p>${crop.completionPercentage}% Complete (${crop.steps.filter(s => s.completed).length}/${crop.steps.length} steps)</p>
+                    </div>
+                    
+                    <div class="crop-actions">
+                        <button class="btn btn-primary" onclick="viewCropGuide('${crop._id}', '${crop.cropName}')">
+                            ${crop.status === 'completed' ? 'View Details' : 'Continue'}
+                        </button>
+                        ${crop.status === 'current' ? `
+                            <button class="btn btn-success" onclick="markCompleted('${crop._id}')">Mark Complete</button>
+                        ` : ''}
+                    </div>
+                    
+                    <div class="date-info">
+                        Last updated: ${new Date(crop.updatedAt).toLocaleDateString()}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function showEmptyState(containerId, title, message) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = `
+                <div class="empty-state">
+                    <h3>${title}</h3>
+                    <p>${message}</p>
+                    ${containerId === 'currentCropsGrid' ? 
+                        '<button class="btn btn-primary" onclick="location.href=\'crop-location.html\'">Start New Crop</button>' : 
+                        ''
+                    }
+                </div>
+            `;
+        }
+
+        function viewCropGuide(progressId, cropName) {
+            const params = new URLSearchParams({
+                progressId: progressId,
+                crop: cropName
+            });
+            window.location.href = `crop-guide.html?${params.toString()}`;
+        }
+
+        async function markCompleted(progressId) {
+            if (!confirm('Are you sure you want to mark this crop as completed?')) {
+                return;
+            }
+
+            try {
+                // Get crop details first
+                const response = await fetch(`/api/progress/${progressId}`, {
+                    credentials: 'include'
+                });
+                const result = await response.json();
+
+                if (result.success) {
+                    const crop = result.data;
+                    // Mark all steps as completed
+                    for (const step of crop.steps) {
+                        await fetch(`/api/progress/step/${progressId}`, {
+                            method: 'PUT',
+                            headers: { 'Content-Type': 'application/json' },
+                            credentials: 'include',
+                            body: JSON.stringify({
+                                stepNumber: step.stepNumber,
+                                completed: true,
+                                notes: step.notes || 'Marked as completed'
+                            })
+                        });
+                    }
+                    
+                    alert('Crop marked as completed successfully!');
+                    loadCurrentCrops();
+                    loadCompletedCrops();
+                }
+            } catch (error) {
+                console.error('Error marking crop as completed:', error);
+                alert('Error marking crop as completed. Please try again.');
+            }
+        }
+    </script>
+</body>
+</html>
+

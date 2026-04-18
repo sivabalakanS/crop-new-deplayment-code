@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Cultivation Guide - SmartAgri AI</title>
+    <link rel="stylesheet" href="css/home-style.css">
+    <style>
+        .guide-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .crop-header {
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .progress-bar {
+            background: #ecf0f1;
+            border-radius: 10px;
+            height: 20px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(90deg, #2ecc71, #27ae60);
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+        
+        .steps-container {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .step-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid #ecf0f1;
+            transition: all 0.3s ease;
+        }
+        
+        .step-card.completed {
+            border-left-color: #27ae60;
+            background: #f8fff9;
+        }
+        
+        .step-card.current {
+            border-left-color: #3498db;
+            background: #f8fbff;
+        }
+        
+        .step-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .step-number {
+            background: #3498db;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .step-number.completed {
+            background: #27ae60;
+        }
+        
+        .step-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin: 0 15px;
+            flex: 1;
+        }
+        
+        .step-checkbox {
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+        }
+        
+        .step-description {
+            color: #7f8c8d;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .step-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 14px;
+            color: #95a5a6;
+        }
+        
+        .notes-section {
+            margin-top: 15px;
+        }
+        
+        .notes-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            resize: vertical;
+            min-height: 60px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            justify-content: center;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: #3498db;
+            color: white;
+        }
+        
+        .btn-success {
+            background: #27ae60;
+            color: white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>🌾 SmartAgri</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="home.html" class="nav-item">Home</a>
+            <a href="crop-location.html" class="nav-item">Crop Recommendation</a>
+            <a href="status.html" class="nav-item">Status</a>
+            <a href="finance.html" class="nav-item">Financial Tracker</a>
+            <a href="profile.html" class="nav-item">Profile</a>
+        </nav>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="main-content">
+        <nav class="navbar">
+            <button class="hamburger" id="hamburger">☰</button>
+            <h1 class="navbar-title">Crop Cultivation Guide</h1>
+        </nav>
+
+        <div class="guide-container">
+            <div class="crop-header">
+                <h2 id="cropName">Rice Cultivation Guide</h2>
+                <p id="cropLocation">Location: Chennai, Tamil Nadu</p>
+                <p id="cropSoil">Soil: Red Loamy Soil</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                </div>
+                <p id="progressText">0% Complete (0/10 steps)</p>
+            </div>
+
+            <div class="steps-container" id="stepsContainer">
+                <!-- Steps will be loaded here -->
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-primary" onclick="location.href='crop-recommendation-result.html'">Back to Results</button>
+                <button class="btn btn-success" id="saveProgressBtn">Save Progress</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/translations.js"></script>
+    <script src="js/lang.js"></script>
+    <script src="js/crop-steps.js"></script>
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+
+        hamburger.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        });
+
+        overlay.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+
+        let currentCropData = null;
+        let progressId = null;
+
+        // Load crop guide on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAuthentication();
+            loadCropGuide();
+        });
+
+        async function checkAuthentication() {
+            try {
+                const response = await fetch('/api/auth/me', {
+                    credentials: 'include'
+                });
+                
+                if (!response.ok) {
+                    alert('You need to login first!');
+                    window.location.href = '/login.html';
+                    return;
+                }
+            } catch (error) {
+                console.error('Auth check failed:', error);
+                alert('Please login to access this page');
+                window.location.href = '/login.html';
+            }
+        }
+
+        function loadCropGuide() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const cropName = urlParams.get('crop') || localStorage.getItem('selectedCrop') || 'Rice';
+            const location = urlParams.get('location') || localStorage.getItem('selectedLocation') || 'Chennai, Tamil Nadu';
+            const soil = urlParams.get('soil') || localStorage.getItem('selectedSoil') || 'Red Loamy Soil';
+
+            document.getElementById('cropName').textContent = `${cropName} Cultivation Guide`;
+            document.getElementById('cropLocation').textContent = `Location: ${location}`;
+            document.getElementById('cropSoil').textContent = `Soil: ${soil}`;
+
+            const steps = getCropCultivationSteps(cropName);
+            displaySteps(steps);
+            
+            // Check if there's existing progress
+            checkExistingProgress(cropName, location, soil);
+        }
+
+        function displaySteps(steps) {
+            const container = document.getElementById('stepsContainer');
+            container.innerHTML = '';
+
+            steps.forEach((step, index) => {
+                const stepCard = document.createElement('div');
+                stepCard.className = 'step-card';
+                stepCard.id = `step-${step.stepNumber}`;
+
+                stepCard.innerHTML = `
+                    <div class="step-header">
+                        <div class="step-number" id="stepNum-${step.stepNumber}">${step.stepNumber}</div>
+                        <div class="step-title">${step.title}</div>
+                        <input type="checkbox" class="step-checkbox" id="checkbox-${step.stepNumber}" 
+                               onchange="toggleStep(${step.stepNumber})">
+                    </div>
+                    <div class="step-description">${step.description}</div>
+                    <div class="step-meta">
+                        <span><strong>Duration:</strong> ${step.duration}</span>
+                        <span><strong>Season:</strong> ${step.season}</span>
+                    </div>
+                    <div class="notes-section">
+                        <label>Notes:</label>
+                        <textarea class="notes-input" id="notes-${step.stepNumber}" 
+                                  placeholder="Add your notes for this step..."></textarea>
+                    </div>
+                `;
+
+                container.appendChild(stepCard);
+            });
+        }
+
+        function toggleStep(stepNumber) {
+            const checkbox = document.getElementById(`checkbox-${stepNumber}`);
+            const stepCard = document.getElementById(`step-${stepNumber}`);
+            const stepNum = document.getElementById(`stepNum-${stepNumber}`);
+
+            if (checkbox.checked) {
+                stepCard.classList.add('completed');
+                stepNum.classList.add('completed');
+                stepNum.innerHTML = '✓';
+            } else {
+                stepCard.classList.remove('completed');
+                stepNum.classList.remove('completed');
+                stepNum.textContent = stepNumber;
+            }
+
+            updateProgress();
+            autoSaveStep(stepNumber);
+        }
+
+        async function autoSaveStep(stepNumber) {
+            const cropName = document.getElementById('cropName').textContent.replace(' Cultivation Guide', '');
+            const location = document.getElementById('cropLocation').textContent.replace('Location: ', '');
+            const soil = document.getElementById('cropSoil').textContent.replace('Soil: ', '');
+            const completed = document.getElementById(`checkbox-${stepNumber}`)?.checked || false;
+            const notes = document.getElementById(`notes-${stepNumber}`)?.value || '';
+
+            if (!progressId) {
+                // First interaction — create the full record
+                const steps = getCropCultivationSteps(cropName);
+                const stepsData = steps.map(s => ({
+                    stepNumber: s.stepNumber,
+                    title: s.title,
+                    description: s.description,
+                    completed: document.getElementById(`checkbox-${s.stepNumber}`)?.checked || false,
+                    notes: document.getElementById(`notes-${s.stepNumber}`)?.value || ''
+                }));
+                try {
+                    const res = await fetch('/api/progress/start', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        credentials: 'include',
+                        body: JSON.stringify({ cropName, location: { area: location }, soilType: soil, steps: stepsData })
+                    });
+                    const result = await res.json();
+                    if (result.success && result.data) progressId = result.data._id;
+                } catch (e) { console.error('Auto-save create failed:', e); }
+            } else {
+                // Update only this step
+                try {
+                    await fetch(`/api/progress/step/${progressId}`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        credentials: 'include',
+                        body: JSON.stringify({ stepNumber, completed, notes })
+                    });
+                } catch (e) { console.error('Auto-save update failed:', e); }
+            }
+        }
+
+        function updateProgress() {
+            const checkboxes = document.querySelectorAll('.step-checkbox');
+            const completed = Array.from(checkboxes).filter(cb => cb.checked).length;
+            const total = checkboxes.length;
+            const percentage = Math.round((completed / total) * 100);
+
+            document.getElementById('progressFill').style.width = `${percentage}%`;
+            document.getElementById('progressText').textContent = `${percentage}% Complete (${completed}/${total} steps)`;
+        }
+
+        async function checkExistingProgress(cropName, location, soil) {
+            try {
+                const response = await fetch('/api/progress/current', { credentials: 'include' });
+                const result = await response.json();
+                if (result.success && result.data.length > 0) {
+                    // Match by cropName + location
+                    const existing = result.data.find(p =>
+                        p.cropName === cropName &&
+                        (p.location.area || '').toLowerCase() === location.toLowerCase()
+                    ) || result.data.find(p => p.cropName === cropName);
+                    if (existing) {
+                        progressId = existing._id;
+                        loadExistingProgress(existing);
+                    }
+                }
+            } catch (error) {
+                console.log('No existing progress found');
+            }
+        }
+
+        function loadExistingProgress(progress) {
+            progress.steps.forEach(step => {
+                const checkbox = document.getElementById(`checkbox-${step.stepNumber}`);
+                const notes = document.getElementById(`notes-${step.stepNumber}`);
+                
+                if (checkbox && step.completed) {
+                    checkbox.checked = true;
+                    toggleStep(step.stepNumber);
+                }
+                
+                if (notes && step.notes) {
+                    notes.value = step.notes;
+                }
+            });
+        }
+
+        document.getElementById('saveProgressBtn').addEventListener('click', async () => {
+            await saveProgressManually();
+        });
+
+        async function saveProgressManually() {
+            await saveProgressToDatabase(true);
+        }
+
+        async function saveProgressToDatabase(showAlert = false) {
+            const cropName = document.getElementById('cropName').textContent.replace(' Cultivation Guide', '');
+            const location = document.getElementById('cropLocation').textContent.replace('Location: ', '');
+            const soil = document.getElementById('cropSoil').textContent.replace('Soil: ', '');
+            const steps = getCropCultivationSteps(cropName);
+
+            const stepsData = steps.map(step => ({
+                stepNumber: step.stepNumber,
+                title: step.title,
+                description: step.description,
+                completed: document.getElementById(`checkbox-${step.stepNumber}`)?.checked || false,
+                notes: document.getElementById(`notes-${step.stepNumber}`)?.value || ''
+            }));
+
+            try {
+                if (!progressId) {
+                    // Create new record only once
+                    const response = await fetch('/api/progress/start', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        credentials: 'include',
+                        body: JSON.stringify({
+                            cropName,
+                            location: { area: location },
+                            soilType: soil,
+                            steps: stepsData
+                        })
+                    });
+                    const result = await response.json();
+                    if (result.success && result.data) {
+                        progressId = result.data._id;
+                    } else {
+                        throw new Error(result.message || 'Failed to create progress');
+                    }
+                } else {
+                    // Update only changed steps
+                    for (const step of stepsData) {
+                        const res = await fetch(`/api/progress/step/${progressId}`, {
+                            method: 'PUT',
+                            headers: { 'Content-Type': 'application/json' },
+                            credentials: 'include',
+                            body: JSON.stringify({
+                                stepNumber: step.stepNumber,
+                                completed: step.completed,
+                                notes: step.notes
+                            })
+                        });
+                        if (!res.ok) throw new Error('Failed to update step');
+                    }
+                }
+
+                // Check if all steps done → auto move to completed
+                const allDone = stepsData.every(s => s.completed);
+                if (showAlert) {
+                    alert(allDone
+                        ? '🎉 All steps completed! Crop moved to Previous Crops.'
+                        : '✅ Progress saved! Check Status page to view.');
+                }
+                return true;
+            } catch (error) {
+                console.error('Error saving progress:', error);
+                if (showAlert) alert('Error saving progress. Make sure you are logged in and MongoDB is running.');
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>

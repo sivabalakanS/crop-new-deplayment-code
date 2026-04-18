@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Recommendation - SmartAgri AI</title>
+    <link rel="stylesheet" href="css/location.css">
+</head>
+<body>
+    <div class="location-container">
+        <div class="location-card">
+            <h2>🌾 Crop Recommendation</h2>
+            <p>Select your location and crop category</p>
+
+            <!-- Step 1: Location Selection -->
+            <div id="step1" class="step-section">
+                <h3 class="step-title">Step 1: Select Location</h3>
+                <form id="locationForm" class="location-form">
+                    <div class="form-group">
+                        <label for="state">State <span class="required">*</span></label>
+                        <select id="state" name="state" required>
+                            <option value="">-- Select State --</option>
+                            <option value="Tamil Nadu">Tamil Nadu</option>
+                            <option value="Kerala">Kerala</option>
+                            <option value="Karnataka">Karnataka</option>
+                        </select>
+                        <span class="loading-indicator" id="stateLoading"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="district">District <span class="required">*</span></label>
+                        <select id="district" name="district" required disabled>
+                            <option value="">-- Select District --</option>
+                        </select>
+                        <span class="loading-indicator" id="districtLoading"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="taluk">Taluk <span class="required">*</span></label>
+                        <select id="taluk" name="taluk" required disabled>
+                            <option value="">-- Select Taluk --</option>
+                        </select>
+                        <span class="loading-indicator" id="talukLoading"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="area">Area/Village <span class="required">*</span></label>
+                        <select id="area" name="area" required disabled>
+                            <option value="">-- Select Area --</option>
+                        </select>
+                        <span class="loading-indicator" id="areaLoading"></span>
+                    </div>
+
+                    <button type="button" id="detectLocationBtn" class="detect-btn">
+                        📡 Detect My Location
+                    </button>
+
+                    <div id="locationSummary" class="location-summary" style="display: none;">
+                        <h3>Selected Location:</h3>
+                        <p id="summaryText"></p>
+                    </div>
+
+                    <button type="button" id="nextBtn" class="confirm-btn" disabled>
+                        Next: Select Crop Category →
+                    </button>
+                </form>
+            </div>
+
+            <!-- Step 2: Crop Category Selection -->
+            <div id="step2" class="step-section" style="display: none;">
+                <h3 class="step-title">Step 2: Select Crop Category</h3>
+                <div class="category-grid">
+                    <div class="category-card" data-category="Cereals">
+                        <img src="https://www.shutterstock.com/image-photo/hand-holding-ear-rice-paddy-600nw-2702096427.jpg" alt="Cereals" class="category-image">
+                        <div class="category-name">Cereals</div>
+                    </div>
+                    <div class="category-card" data-category="Vegetables">
+                        <img src="https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?w=600&h=400&fit=crop" alt="Vegetables" class="category-image">
+                        <div class="category-name">Vegetables</div>
+                    </div>
+                    <div class="category-card" data-category="Fruits">
+                        <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=600&h=400&fit=crop" alt="Fruits" class="category-image">
+                        <div class="category-name">Fruits</div>
+                    </div>
+                    <div class="category-card" data-category="Pulses">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1R2TIvkb19cxedNJzeppL-6j20aAajsgMmg&s" alt="Pulses" class="category-image">
+                        <div class="category-name">Pulses</div>
+                    </div>
+                    <div class="category-card" data-category="Oil Seeds">
+                        <img src="https://www.fao.org/images/reulibraries/news-import/1_4aug.jpg?sfvrsn=6ca299be_2" alt="Oil Seeds" class="category-image">
+                        <div class="category-name">Oil Seeds</div>
+                    </div>
+                    <div class="category-card" data-category="Flowers">
+                        <img src="https://cdn.mos.cms.futurecdn.net/v2/t:0,l:200,cw:1200,ch:900,q:80,w:1200/r8SZcbxtzQNsoi5hLAcC5k.jpg" alt="Flowers" class="category-image">
+                        <div class="category-name">Flowers</div>
+                    </div>
+                    <div class="category-card" data-category="Plantation Crops">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrFeRwUsZ5spIwgpXfGBmqBXW9rcojNbhgug&s" alt="Plantation Crops" class="category-image">
+                        <div class="category-name">Plantation Crops</div>
+                    </div>
+                    <div class="category-card" data-category="Spices">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7jkTs9lqOs0KNJSgxfdn4zY18hDqiMy2YxA&s" alt="Spices" class="category-image">
+                        <div class="category-name">Spices</div>
+                    </div>
+                </div>
+
+                <div id="categorySelected" class="location-summary" style="display: none;">
+                    <h3>Selected Category:</h3>
+                    <p id="categoryText"></p>
+                </div>
+
+                <button type="button" id="backBtn" class="back-btn">
+                    ← Back to Location
+                </button>
+
+                <button type="button" id="nextToSoilBtn" class="confirm-btn" disabled>
+                    Next: Select Soil Type →
+                </button>
+            </div>
+
+            <!-- Step 3: Soil Selection -->
+            <div id="step3" class="step-section" style="display: none;">
+                <h3 class="step-title">Step 3: Select Soil Type</h3>
+                <div class="soil-info">
+                    <p>Location: <strong id="soilLocation"></strong></p>
+                    <p>Select the soil type in your field for better crop recommendations</p>
+                </div>
+                
+                <div id="soilGrid" class="soil-grid">
+                    <!-- Soil cards will be loaded here -->
+                </div>
+
+                <div id="soilSelected" class="location-summary" style="display: none;">
+                    <h3>Selected Soil:</h3>
+                    <p id="soilText"></p>
+                </div>
+
+                <button type="button" id="backToCategory" class="back-btn">
+                    ← Back to Category
+                </button>
+
+                <button type="button" id="proceedBtn" class="confirm-btn" disabled>
+                    Get Crop Recommendations
+                </button>
+            </div>
+
+            <a href="home.html" class="back-link">← Back to Home</a>
+        </div>
+    </div>
+
+    <script src="js/translations.js"></script>
+    <script src="js/lang.js"></script>
+    <script src="js/location-data.js"></script>
+    <script src="js/soil-data.js"></script>
+    <script src="js/crop-location.js"></script>
+</body>
+</html>
