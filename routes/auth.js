@@ -160,11 +160,12 @@ router.get('/aadhar', require('../middleware/auth').protect, async (req, res) =>
 // @route   POST /api/auth/aadhar  — save aadhar details
 router.post('/aadhar', require('../middleware/auth').protect, async (req, res) => {
   try {
-    const { aadharNumber, aadharName, aadharDob, aadharAddress } = req.body;
+    const { aadharNumber, aadharName, aadharDob, aadharAddress, aadharPhoto } = req.body;
     if (aadharNumber && !/^\d{12}$/.test(aadharNumber))
       return res.status(400).json({ success: false, message: 'Aadhar number must be 12 digits' });
     const update = { aadharName, aadharDob, aadharAddress };
     if (aadharNumber) { update.aadharNumber = aadharNumber; update.aadharStatus = 'pending'; }
+    if (aadharPhoto)  { update.aadharPhoto = aadharPhoto; }
     await User.findByIdAndUpdate(req.user.id, update);
     res.json({ success: true });
   } catch (e) { res.status(500).json({ success: false, message: e.message }); }

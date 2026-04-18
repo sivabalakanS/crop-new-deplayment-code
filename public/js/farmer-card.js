@@ -1,8 +1,8 @@
 const API = window.API_BASE || '';
 let currentUserId = null;
+let photoBase64 = null;
 
 window.addEventListener('DOMContentLoaded', async () => {
-    // Clear all input fields first before loading — prevents previous user data showing
     document.getElementById('fcName').value    = '';
     document.getElementById('fcDob').value     = '';
     document.getElementById('fcAddress').value = '';
@@ -31,6 +31,11 @@ async function loadCardData() {
         document.getElementById('fcAddress').value = data.aadharAddress || '';
         if (data.aadharNumber) {
             document.getElementById('fcAadhar').value = data.aadharNumber.replace(/(\d{4})(\d{4})(\d{4})/, '$1 $2 $3');
+        }
+        // Load saved photo
+        if (data.aadharPhoto) {
+            photoBase64 = data.aadharPhoto;
+            setPhotoPreview(photoBase64);
         }
 
         liveUpdate();
@@ -116,7 +121,7 @@ async function saveCard() {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include',
-            body: JSON.stringify({ aadharNumber: rawNum, aadharName: name, aadharDob: dob, aadharAddress: address })
+            body: JSON.stringify({ aadharNumber: rawNum, aadharName: name, aadharDob: dob, aadharAddress: address, aadharPhoto: photoBase64 })
         });
         const data = await res.json();
         if (data.success) {
@@ -130,7 +135,26 @@ async function saveCard() {
     }
 }
 
-function formatAadhar() {
+function handlePhoto(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    if (file.size > 2 * 1024 * 1024) { alert('Photo too large. Max 2MB.'); return; }
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        photoBase64 = e.target.result;
+        setPhotoPreview(photoBase64);
+    };
+    reader.readAsDataURL(file);
+}
+
+function setPhotoPreview(src) {
+    const preview = document.getElementById('photoPreview');
+    const cardPhoto = document.getElementById('cardPhoto');
+    preview.innerHTML = `<img src="${src}" alt="photo">`;
+    cardPhoto.innerHTML = `<img src="${src}" alt="photo">`;
+}
+
+
     const el = document.getElementById('fcAadhar');
     let v = el.value.replace(/\D/g, '').slice(0, 12);
     el.value = v.replace(/(\d{4})(?=\d)/g, '$1 ');

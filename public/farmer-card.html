@@ -49,7 +49,33 @@
         .msg.success { background: #d4edda; color: #155724; display: block; }
         .msg.error   { background: #f8d7da; color: #721c24; display: block; }
 
-        /* ── Farmer Card Preview ── */
+        /* Photo upload */
+        .photo-upload-wrap { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+        .photo-preview {
+            width: 80px; height: 80px; border-radius: 50%;
+            object-fit: cover; border: 3px solid #2ecc71;
+            background: #f0fdf4; display: flex; align-items: center;
+            justify-content: center; font-size: 36px; flex-shrink: 0;
+            overflow: hidden;
+        }
+        .photo-preview img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+        .photo-upload-btn {
+            padding: 10px 20px; background: #f0fdf4; color: #27ae60;
+            border: 2px dashed #2ecc71; border-radius: 8px;
+            font-size: 14px; font-weight: 600; cursor: pointer;
+            transition: background 0.2s;
+        }
+        .photo-upload-btn:hover { background: #d4f5e2; }
+
+        /* Card photo */
+        .card-photo {
+            width: 64px; height: 64px; border-radius: 50%;
+            border: 3px solid rgba(255,255,255,0.8);
+            object-fit: cover; background: rgba(255,255,255,0.2);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 28px; flex-shrink: 0; overflow: hidden;
+        }
+        .card-photo img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
         .card-wrap { perspective: 1000px; }
         .farmer-card {
             background: linear-gradient(135deg, #1a5c2e 0%, #2ecc71 50%, #27ae60 100%);
@@ -127,6 +153,16 @@
                 <!-- Left: Form -->
                 <div class="fc-panel">
                     <h3>📝 Personal Details</h3>
+
+                    <!-- Photo Upload -->
+                    <div class="photo-upload-wrap">
+                        <div class="photo-preview" id="photoPreview">👨🌾</div>
+                        <div>
+                            <label class="photo-upload-btn" for="photoInput">📷 Upload Photo</label>
+                            <input type="file" id="photoInput" accept="image/*" style="display:none" onchange="handlePhoto(event)">
+                            <div style="font-size:12px;color:#999;margin-top:6px;">JPG, PNG • Max 2MB</div>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label>Full Name</label>
                         <input type="text" id="fcName" placeholder="Your full name" oninput="liveUpdate()">
@@ -157,8 +193,13 @@
                                 <div class="card-logo"><span>🌾</span>SmartAgri</div>
                                 <div class="card-badge">FARMER ID</div>
                             </div>
-                            <div class="card-name" id="previewName">Your Name</div>
-                            <div class="card-id" id="previewId">ID: —</div>
+                            <div style="display:flex;align-items:center;gap:14px;margin-bottom:8px;">
+                                <div class="card-photo" id="cardPhoto">👨🌾</div>
+                                <div>
+                                    <div class="card-name" id="previewName">Your Name</div>
+                                    <div class="card-id" id="previewId">ID: —</div>
+                                </div>
+                            </div>
                             <div class="card-details">
                                 <div class="card-detail-item">
                                     <label>Date of Birth</label>

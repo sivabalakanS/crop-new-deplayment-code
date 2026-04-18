@@ -38,6 +38,7 @@ router.get('/:userId', async (req, res) => {
                 dob: user.aadharDob || '',
                 address: user.aadharAddress || '',
                 aadharNumber: user.aadharNumber || '',
+                photo: user.aadharPhoto || '',
                 memberSince: user.createdAt
             },
             crops,
