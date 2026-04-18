@@ -63,7 +63,8 @@
             padding: 10px 20px; background: #f0fdf4; color: #27ae60;
             border: 2px dashed #2ecc71; border-radius: 8px;
             font-size: 14px; font-weight: 600; cursor: pointer;
-            transition: background 0.2s;
+            transition: background 0.2s; display: inline-block;
+            margin-bottom: 0 !important;
         }
         .photo-upload-btn:hover { background: #d4f5e2; }
 
@@ -155,12 +156,13 @@
                     <h3>📝 Personal Details</h3>
 
                     <!-- Photo Upload -->
-                    <div class="photo-upload-wrap">
-                        <div class="photo-preview" id="photoPreview">👨🌾</div>
+                    <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;padding:16px;background:#f8f9fa;border-radius:12px;border:2px dashed #2ecc71;">
+                        <div id="photoPreview" style="width:80px;height:80px;border-radius:50%;border:3px solid #2ecc71;background:#f0fdf4;display:flex;align-items:center;justify-content:center;font-size:36px;flex-shrink:0;overflow:hidden;">👨🌾</div>
                         <div>
-                            <label class="photo-upload-btn" for="photoInput">📷 Upload Photo</label>
+                            <div style="font-size:14px;font-weight:700;color:#2c3e50;margin-bottom:6px;">📷 Profile Photo</div>
+                            <label for="photoInput" style="padding:8px 16px;background:#2ecc71;color:white;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;display:inline-block;">Choose Photo</label>
                             <input type="file" id="photoInput" accept="image/*" style="display:none" onchange="handlePhoto(event)">
-                            <div style="font-size:12px;color:#999;margin-top:6px;">JPG, PNG • Max 2MB</div>
+                            <div style="font-size:11px;color:#999;margin-top:4px;">JPG, PNG • Max 2MB</div>
                         </div>
                     </div>
                     <div class="form-group">
