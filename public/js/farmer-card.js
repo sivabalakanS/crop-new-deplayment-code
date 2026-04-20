@@ -1,4 +1,7 @@
-const API = window.API_BASE || '';
+const DEFAULT_AVATAR = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%"><circle cx="50" cy="35" r="22" fill="#a5d6a7"/><ellipse cx="50" cy="85" rx="35" ry="25" fill="#a5d6a7"/></svg>`;
+const DEFAULT_CARD_AVATAR = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%"><circle cx="50" cy="35" r="22" fill="rgba(255,255,255,0.6)"/><ellipse cx="50" cy="85" rx="35" ry="25" fill="rgba(255,255,255,0.6)"/></svg>`;
+
+
 let currentUserId = null;
 let photoBase64 = null;
 
@@ -152,8 +155,13 @@ function handlePhoto(event) {
 function setPhotoPreview(src) {
     const preview = document.getElementById('photoPreview');
     const cardPhoto = document.getElementById('cardPhoto');
-    preview.innerHTML = `<img src="${src}" alt="photo" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;">`;
-    cardPhoto.innerHTML = `<img src="${src}" alt="photo" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;">`;
+    if (src) {
+        preview.innerHTML = `<img src="${src}" alt="photo" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;">`;
+        cardPhoto.innerHTML = `<img src="${src}" alt="photo" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;">`;
+    } else {
+        preview.innerHTML = DEFAULT_AVATAR;
+        cardPhoto.innerHTML = DEFAULT_CARD_AVATAR;
+    }
 }
 
 function formatAadhar() {

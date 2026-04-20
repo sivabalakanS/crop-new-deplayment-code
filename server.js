@@ -79,7 +79,6 @@ app.use('/api/location', require('./routes/location'));
 app.use('/api/crop', require('./routes/crop'));
 app.use('/api/soil', require('./routes/soil'));
 app.use('/api/progress', require('./routes/progress'));
-app.use('/api/market', require('./routes/market'));
 app.use('/api/farmer-card', require('./routes/farmer-card'));
 
 // Serve HTML pages
