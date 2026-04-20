@@ -1,7 +1,7 @@
 const DEFAULT_AVATAR = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%"><circle cx="50" cy="35" r="22" fill="#a5d6a7"/><ellipse cx="50" cy="85" rx="35" ry="25" fill="#a5d6a7"/></svg>`;
 const DEFAULT_CARD_AVATAR = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%"><circle cx="50" cy="35" r="22" fill="rgba(255,255,255,0.6)"/><ellipse cx="50" cy="85" rx="35" ry="25" fill="rgba(255,255,255,0.6)"/></svg>`;
 
-
+const API = (typeof window.API_BASE !== 'undefined') ? window.API_BASE : '';
 let currentUserId = null;
 let photoBase64 = null;
 
