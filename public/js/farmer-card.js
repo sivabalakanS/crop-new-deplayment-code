@@ -7,6 +7,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('fcDob').value     = '';
     document.getElementById('fcAddress').value = '';
     document.getElementById('fcAadhar').value  = '';
+    document.getElementById('photoInput').value = '';
     await loadCardData();
     await loadStats();
 });
@@ -138,6 +139,7 @@ async function saveCard() {
 function handlePhoto(event) {
     const file = event.target.files[0];
     if (!file) return;
+    if (!file.type.startsWith('image/')) { alert('Please select an image file.'); return; }
     if (file.size > 2 * 1024 * 1024) { alert('Photo too large. Max 2MB.'); return; }
     const reader = new FileReader();
     reader.onload = (e) => {
@@ -150,8 +152,8 @@ function handlePhoto(event) {
 function setPhotoPreview(src) {
     const preview = document.getElementById('photoPreview');
     const cardPhoto = document.getElementById('cardPhoto');
-    preview.innerHTML = `<img src="${src}" alt="photo">`;
-    cardPhoto.innerHTML = `<img src="${src}" alt="photo">`;
+    preview.innerHTML = `<img src="${src}" alt="photo" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;">`;
+    cardPhoto.innerHTML = `<img src="${src}" alt="photo" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;">`;
 }
 
 function formatAadhar() {
