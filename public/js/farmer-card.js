@@ -127,6 +127,10 @@ async function saveCard() {
             credentials: 'include',
             body: JSON.stringify({ aadharNumber: rawNum, aadharName: name, aadharDob: dob, aadharAddress: address, aadharPhoto: photoBase64 })
         });
+        if (!res.ok) {
+            const text = await res.text();
+            showMsg(msgEl, `Error ${res.status}: ${text}`, 'error'); return;
+        }
         const data = await res.json();
         if (data.success) {
             showMsg(msgEl, '✅ Farmer card saved! QR code is ready.', 'success');
@@ -135,7 +139,7 @@ async function saveCard() {
             showMsg(msgEl, data.message || 'Failed to save.', 'error');
         }
     } catch (e) {
-        showMsg(msgEl, 'Server error. Please try again.', 'error');
+        showMsg(msgEl, `Server error: ${e.message}`, 'error');
     }
 }
 
@@ -146,8 +150,20 @@ function handlePhoto(event) {
     if (file.size > 2 * 1024 * 1024) { alert('Photo too large. Max 2MB.'); return; }
     const reader = new FileReader();
     reader.onload = (e) => {
-        photoBase64 = e.target.result;
-        setPhotoPreview(photoBase64);
+        // Compress image before storing
+        const img = new Image();
+        img.onload = () => {
+            const canvas = document.createElement('canvas');
+            const MAX = 300;
+            let w = img.width, h = img.height;
+            if (w > h) { if (w > MAX) { h = h * MAX / w; w = MAX; } }
+            else       { if (h > MAX) { w = w * MAX / h; h = MAX; } }
+            canvas.width = w; canvas.height = h;
+            canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+            photoBase64 = canvas.toDataURL('image/jpeg', 0.7);
+            setPhotoPreview(photoBase64);
+        };
+        img.src = e.target.result;
     };
     reader.readAsDataURL(file);
 }
