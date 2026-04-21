@@ -412,7 +412,7 @@ class ImprovedDeepBeliefNetwork {
 
     interpretPredictions(predictions, category, soilType, state, district) {
         const categoryMapping = {
-            'Cereals': ['Rice', 'Wheat', 'Maize', 'Millets', 'Sorghum'],
+            'Cereals': ['Rice', 'Wheat', 'Maize', 'Millets'],
             'Vegetables': ['Tomato', 'Onion', 'Potato', 'Cabbage', 'Carrot', 'Brinjal'],
             'Fruits': ['Mango', 'Banana', 'Orange', 'Grapes', 'Pomegranate'],
             'Pulses': ['Chickpea', 'Pigeon Pea', 'Black Gram', 'Green Gram'],
