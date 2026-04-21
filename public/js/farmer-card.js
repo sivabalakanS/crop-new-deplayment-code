@@ -77,9 +77,15 @@ async function loadStats() {
 
 function liveUpdate() {
     const name    = document.getElementById('fcName').value.trim()    || 'Your Name';
-    const dob     = document.getElementById('fcDob').value.trim()     || '—';
+    let dob       = document.getElementById('fcDob').value.trim()     || '—';
     const address = document.getElementById('fcAddress').value.trim() || '—';
     const aadhar  = document.getElementById('fcAadhar').value.trim()  || 'XXXX XXXX XXXX';
+
+    // Format DOB: 20032005 → 20/03/2005
+    if (dob && dob !== '—') {
+        const d = dob.replace(/\D/g, '');
+        if (d.length === 8) dob = d.slice(0,2) + '/' + d.slice(2,4) + '/' + d.slice(4);
+    }
 
     document.getElementById('previewName').textContent    = name;
     document.getElementById('previewDob').textContent     = dob;
