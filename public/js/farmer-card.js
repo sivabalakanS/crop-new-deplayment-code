@@ -188,11 +188,9 @@ function formatAadhar() {
 
 function formatDob() {
     const el = document.getElementById('fcDob');
-    // Remove all non-digits
     let v = el.value.replace(/\D/g, '').slice(0, 8);
-    // Auto insert slashes: DD/MM/YYYY
-    if (v.length >= 5)      v = v.slice(0,2) + '/' + v.slice(2,4) + '/' + v.slice(4);
-    else if (v.length >= 3) v = v.slice(0,2) + '/' + v.slice(2);
+    if (v.length > 4)      v = v.slice(0,2) + '/' + v.slice(2,4) + '/' + v.slice(4);
+    else if (v.length > 2) v = v.slice(0,2) + '/' + v.slice(2);
     el.value = v;
 }
 
